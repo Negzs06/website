@@ -67,9 +67,12 @@ export function DepositForm() {
     setTouched({ name: true, email: true, kind: true, body: true });
     if (Object.keys(e).length) {
       // Send focus to the first problem rather than leaving the visitor
-      // to hunt for it.
-      const first = document.querySelector<HTMLElement>('[data-invalid="true"] :is(input,select,textarea)');
-      first?.focus();
+      // to hunt for it. Driven off the computed errors, not the DOM:
+      // the invalid attributes are not painted until React re-renders,
+      // so querying for them here would always come back empty.
+      const order: (keyof Errors)[] = ['name', 'email', 'kind', 'body'];
+      const firstBad = order.find((k) => e[k]);
+      if (firstBad) document.getElementById(`f-${firstBad}`)?.focus();
       return;
     }
 

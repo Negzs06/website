@@ -11,7 +11,23 @@ import { story } from '@/lib/story';
  * are on — mid-inscription behind Method, dispersed behind Register —
  * rather than resetting to the same pose everywhere.
  */
-export function SceneDriver({ from = 0, to = 1 }: { from?: number; to?: number }) {
+export function SceneDriver({
+  from = 0,
+  to = 1,
+  presence = 1,
+}: {
+  from?: number;
+  to?: number;
+  /** How present the core should be on this page, 0 → 1. */
+  presence?: number;
+}) {
+  useEffect(() => {
+    document.documentElement.style.setProperty('--gl-presence', String(presence));
+    return () => {
+      document.documentElement.style.removeProperty('--gl-presence');
+    };
+  }, [presence]);
+
   useEffect(() => {
     let raf = 0;
     const frame = () => {

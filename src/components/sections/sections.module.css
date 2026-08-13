@@ -442,6 +442,11 @@
   position: relative;
   background: var(--void);
   color: var(--paper);
+  /* Matches the radius on .mandate above it: each zone appears to slide
+     under the next rather than butting against it. */
+  border-radius: clamp(1.4rem, 3vw, 2.6rem) clamp(1.4rem, 3vw, 2.6rem) 0 0;
+  margin-top: calc(-1 * clamp(1.4rem, 3vw, 2.6rem));
+  z-index: 1;
 }
 
 .readerSticky {

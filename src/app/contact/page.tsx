@@ -17,7 +17,7 @@ export default function ContactPage() {
   return (
     <>
       {/* The core, whole again and waiting — the closing beat. */}
-      <SceneDriver from={0.92} to={1} />
+      <SceneDriver from={0.92} to={1} presence={0.6} />
 
       <main id="main" className={`${s.page} zone-deep`}>
         <div className={s.head}>

@@ -18,7 +18,7 @@ export default function RegisterPage() {
   return (
     <>
       {/* Holds the core in its dispersed state for the whole page. */}
-      <SceneDriver from={0.6} to={0.72} />
+      <SceneDriver from={0.6} to={0.72} presence={0.4} />
 
       <main id="main" className="zone-deep">
         <section className={s.hero} aria-labelledby="register-title">

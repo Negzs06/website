@@ -34,7 +34,7 @@ export default function MethodPage() {
   return (
     <>
       {/* Parks the core in the inscription beat for the whole page. */}
-      <SceneDriver from={0.26} to={0.38} />
+      <SceneDriver from={0.26} to={0.38} presence={0.75} />
 
       <main id="main">
         <section className={`${s.hero} zone-deep`} aria-labelledby="method-title">

@@ -31,15 +31,19 @@ export function Frame() {
     let raf = 0;
     let lastChapter = -1;
     let shown = 0;
+    let last = performance.now();
 
-    const frame = () => {
+    const frame = (now: number) => {
+      const dt = Math.min((now - last) / 1000, 0.1);
+      last = now;
       const doc = document.documentElement;
       const max = doc.scrollHeight - window.innerHeight;
       const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
 
       // Ease the readout toward the true value so the digits settle
-      // instead of strobing on every wheel tick.
-      shown += (p - shown) * 0.12;
+      // instead of strobing on every wheel tick. Time-based, so the
+      // depth never lags the section on screen on a slow device.
+      shown += (p - shown) * (1 - Math.exp(-7 * dt));
 
       if (head.current) {
         head.current.style.transform = `translateY(${(shown * 100).toFixed(3)}%)`;
