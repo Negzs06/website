@@ -1,0 +1,215 @@
+.hero {
+  padding-inline: var(--gutter);
+  padding-left: max(var(--gutter), var(--rail));
+  padding-block: clamp(7rem, 16vh, 10rem) clamp(2.5rem, 6vh, 4rem);
+  display: grid;
+  gap: clamp(1.2rem, 3vw, 2rem);
+}
+
+.title {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: var(--t-mega);
+  line-height: 0.84;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  margin-left: -0.04em;
+}
+.titleSerif {
+  font-family: var(--font-display);
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: -0.02em;
+}
+
+.lede {
+  max-width: 44ch;
+  color: var(--fg-muted);
+  font-size: var(--t-lead);
+  line-height: 1.45;
+}
+
+/* ---- the register ---- */
+
+.body {
+  padding-inline: var(--gutter);
+  padding-left: max(var(--gutter), var(--rail));
+  padding-bottom: clamp(4rem, 12vh, 8rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.62fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+}
+
+.listHead {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr 8rem 6rem;
+  gap: 1rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.list {
+  display: grid;
+}
+
+.row {
+  position: relative;
+  display: block;
+  width: 100%;
+  text-align: left;
+  border-bottom: 1px solid var(--rule);
+  padding: clamp(0.9rem, 2vw, 1.35rem) 0;
+  transition: opacity 0.4s var(--e-out);
+}
+
+/* Hovering one row dims the rest — the register behaves as one control. */
+.list:hover .row {
+  opacity: 0.4;
+}
+.list .row:hover,
+.list .row[data-open='true'] {
+  opacity: 1;
+}
+
+.rowGrid {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr 8rem 6rem;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.rowTitle {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: clamp(1.25rem, 2.6vw, 2.1rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  display: inline-block;
+  transition: transform 0.6s var(--e-out);
+}
+.row:hover .rowTitle {
+  transform: translateX(0.55rem);
+}
+
+.rowStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--fg-faint);
+}
+.dot[data-status='sealed'] {
+  background: var(--halite);
+}
+.dot[data-status='writing'] {
+  background: var(--oxide);
+}
+
+/* An oxide rule that draws across the row on hover. */
+.rowRule {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 1px;
+  width: 100%;
+  background: var(--oxide);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.65s var(--e-inout);
+}
+.row:hover .rowRule,
+.row[data-open='true'] .rowRule {
+  transform: scaleX(1);
+}
+
+/* ---- expanding detail ---- */
+
+.detail {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.7s var(--e-inout);
+}
+.detail[data-open='true'] {
+  grid-template-rows: 1fr;
+}
+.detailInner {
+  overflow: hidden;
+}
+.detailPad {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1rem, 2.4vw, 1.6rem) 0 clamp(0.4rem, 1vw, 0.8rem);
+  max-width: 58ch;
+}
+.detailText {
+  color: var(--fg-muted);
+  line-height: 1.62;
+}
+.detailFacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.6rem;
+}
+
+/* ---- the viewer ---- */
+
+.viewerWrap {
+  position: sticky;
+  top: clamp(6rem, 14vh, 9rem);
+  aspect-ratio: 4 / 5;
+  width: 100%;
+  overflow: hidden;
+  background: var(--void-raised);
+  border: 1px solid var(--rule);
+}
+
+.viewerMeta {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 0.85rem;
+  background: linear-gradient(to top, color-mix(in srgb, var(--void) 88%, transparent), transparent);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.viewerCorner {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.75rem;
+  z-index: 2;
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .body {
+    grid-template-columns: 1fr;
+  }
+  .viewerWrap {
+    position: relative;
+    top: 0;
+    order: -1;
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 700px) {
+  .listHead,
+  .rowGrid {
+    grid-template-columns: 3.6rem 1fr;
+  }
+  .listHeadHide,
+  .rowHide {
+    display: none;
+  }
+}

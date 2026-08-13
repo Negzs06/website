@@ -1,0 +1,124 @@
+@import './tokens.css';
+@import './base.css';
+
+/* ============================================================
+   Global chrome that sits above every page: the plate frame,
+   the film grain, and the WebGL canvas mount.
+   ============================================================ */
+
+/* The persistent 3D canvas lives behind all content, fixed to the
+   viewport. Sections declare where they want the camera to be;
+   the canvas never remounts between routes. */
+.gl-stage {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-canvas);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.2s var(--e-out);
+}
+.gl-stage[data-ready='true'] {
+  opacity: 1;
+}
+.gl-stage canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.page-root {
+  position: relative;
+  z-index: var(--z-content);
+}
+
+/* ------------------------------------------------------------
+   Film grain. A single tiled SVG-noise data URI, animated by
+   stepping its background-position — no per-frame JS, no canvas.
+   ------------------------------------------------------------ */
+.grain {
+  position: fixed;
+  inset: -150%;
+  z-index: 55;
+  pointer-events: none;
+  opacity: 0.055;
+  mix-blend-mode: overlay;
+  background-image: var(--grain-src);
+  background-size: 190px 190px;
+  animation: grain-shift 0.7s steps(1) infinite;
+  will-change: transform;
+}
+
+@keyframes grain-shift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  20% {
+    transform: translate3d(-3%, 2%, 0);
+  }
+  40% {
+    transform: translate3d(2%, -4%, 0);
+  }
+  60% {
+    transform: translate3d(-4%, -2%, 0);
+  }
+  80% {
+    transform: translate3d(3%, 3%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain {
+    animation: none;
+    opacity: 0.035;
+  }
+}
+
+/* ------------------------------------------------------------
+   Cursor suppression — only on true pointer devices, and only
+   once the custom cursor has actually mounted.
+   ------------------------------------------------------------ */
+html[data-cursor='custom'],
+html[data-cursor='custom'] * {
+  cursor: none !important;
+}
+
+/* ------------------------------------------------------------
+   Inline link. An underline that redraws from the opposite side
+   on hover, rather than simply appearing.
+   ------------------------------------------------------------ */
+.link-inline {
+  position: relative;
+  width: fit-content;
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-bottom: 2px;
+}
+.link-inline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform-origin: left center;
+  transition: transform 0.55s var(--e-inout);
+}
+.link-inline:hover::after,
+.link-inline:focus-visible::after {
+  transform: scaleX(0);
+  transform-origin: right center;
+}
+
+/* ------------------------------------------------------------
+   Scroll lock used by the loader and the fullscreen menu.
+   ------------------------------------------------------------ */
+html[data-locked='true'] body {
+  overflow: hidden;
+}

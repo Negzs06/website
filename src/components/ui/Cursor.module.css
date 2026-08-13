@@ -1,0 +1,120 @@
+.root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-cursor);
+  pointer-events: none;
+  will-change: transform;
+  opacity: 0;
+  transition: opacity 0.4s var(--e-out);
+}
+.root[data-visible='true'] {
+  opacity: 1;
+}
+
+/* The ring trails the dot. Difference blending means it reads on the
+   bone surface world and the obsidian deep world without any theming. */
+.ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  border: 1px solid var(--paper);
+  border-radius: 50%;
+  mix-blend-mode: difference;
+  will-change: transform;
+  transition:
+    width 0.42s var(--e-out),
+    height 0.42s var(--e-out),
+    margin 0.42s var(--e-out),
+    background-color 0.42s var(--e-out),
+    border-color 0.42s var(--e-out),
+    opacity 0.3s var(--e-out);
+}
+
+.dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  margin: -2.5px 0 0 -2.5px;
+  background: var(--paper);
+  border-radius: 50%;
+  mix-blend-mode: difference;
+  transition: opacity 0.3s var(--e-out), transform 0.3s var(--e-out);
+}
+
+.label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 96px;
+  height: 96px;
+  margin: -48px 0 0 -48px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--void);
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.32s var(--e-out), transform 0.42s var(--e-spring);
+}
+
+/* ---- states ------------------------------------------------ */
+
+/* Over any interactive element: the ring contracts onto the target
+   and the dot disappears into it. */
+.root[data-state='link'] .ring {
+  width: 62px;
+  height: 62px;
+  margin: -31px 0 0 -31px;
+  background: var(--paper);
+  border-color: transparent;
+}
+.root[data-state='link'] .dot {
+  opacity: 0;
+}
+
+/* Over a plate: a filled disc carrying a verb. */
+.root[data-state='view'] .ring,
+.root[data-state='drag'] .ring,
+.root[data-state='open'] .ring,
+.root[data-state='close'] .ring {
+  width: 96px;
+  height: 96px;
+  margin: -48px 0 0 -48px;
+  background: var(--oxide);
+  border-color: transparent;
+  mix-blend-mode: normal;
+}
+.root[data-state='view'] .dot,
+.root[data-state='drag'] .dot,
+.root[data-state='open'] .dot,
+.root[data-state='close'] .dot {
+  opacity: 0;
+}
+.root[data-state='view'] .label,
+.root[data-state='drag'] .label,
+.root[data-state='open'] .label,
+.root[data-state='close'] .label {
+  opacity: 1;
+  transform: scale(1);
+  color: var(--flare);
+}
+
+/* Pressed. */
+.root[data-press='true'] .ring {
+  transform: scale(0.82);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root {
+    display: none;
+  }
+}

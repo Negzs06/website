@@ -1,0 +1,234 @@
+/* ============================================================
+   CHRONOLITH — Base layer
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: auto; /* Lenis owns scrolling */
+  background: var(--void);
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: var(--t-body);
+  line-height: 1.5;
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+  transition: background-color 0.9s var(--e-inout), color 0.9s var(--e-inout);
+}
+
+/* Lenis is driven manually via rAF; these are its required hooks. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+::selection {
+  background: var(--oxide);
+  color: var(--flare);
+}
+
+/* ------------------------------------------------------------
+   Focus: visible, mineral, never a default blue ring.
+   ------------------------------------------------------------ */
+:focus {
+  outline: none;
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 1px;
+}
+
+/* ------------------------------------------------------------
+   Typographic primitives
+   ------------------------------------------------------------ */
+
+.u-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 0.86;
+  letter-spacing: -0.022em;
+}
+
+.u-grotesk {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+
+/* Metadata voice: small, tracked-out, monospaced. Used everywhere
+   for section numbers, depths, coordinates, epochs. */
+.u-meta {
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--fg-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.u-tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+.u-italic {
+  font-style: italic;
+}
+
+.u-accent {
+  color: var(--accent);
+}
+
+.u-measure {
+  max-width: var(--measure);
+}
+
+.u-rule {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  width: 100%;
+}
+
+.u-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip link — first tab stop on every page. */
+.u-skip {
+  position: fixed;
+  top: var(--s-4);
+  left: var(--s-4);
+  z-index: 200;
+  padding: 0.7rem 1.1rem;
+  background: var(--oxide);
+  color: var(--flare);
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transform: translateY(-180%);
+  transition: transform 0.4s var(--e-out);
+}
+.u-skip:focus-visible {
+  transform: translateY(0);
+}
+
+/* ------------------------------------------------------------
+   Layout primitives
+   ------------------------------------------------------------ */
+
+.u-shell {
+  padding-inline: var(--gutter);
+  padding-left: max(var(--gutter), var(--rail));
+}
+
+.u-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+}
+
+@media (max-width: 860px) {
+  .u-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+/* ------------------------------------------------------------
+   Reduced motion. The experience degrades to a static
+   editorial document rather than breaking.
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

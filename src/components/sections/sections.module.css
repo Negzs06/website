@@ -1,0 +1,595 @@
+/* ============================================================
+   Home — the descent.
+   Sections are transparent by default so the core shows through;
+   a section only takes a background when the narrative calls for
+   the environment to change.
+   ============================================================ */
+
+.scene {
+  position: relative;
+  padding-inline: var(--gutter);
+  padding-left: max(var(--gutter), var(--rail));
+}
+
+/* Section number + label, hung at the top of each scene. */
+.slug {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: clamp(1.6rem, 4vw, 3.2rem);
+}
+.slugNum {
+  color: var(--accent);
+}
+.slugRule {
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+  transform-origin: left center;
+}
+
+/* ---------------- 00 — HERO ---------------- */
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  /* The bottom padding clears the frame's metadata rail; without it the
+     lede and the live coordinates collide at short viewport heights. */
+  padding-block: clamp(5.5rem, 13vh, 8rem) clamp(4rem, 8vh, 5.5rem);
+  row-gap: clamp(1.6rem, 4vh, 3rem);
+}
+
+.heroTop {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 2rem;
+}
+
+.heroTitle {
+  font-size: var(--t-mega);
+  line-height: 0.83;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  align-self: end;
+  margin-top: auto;
+  /* The last line is allowed to sit past the rail, so the type feels
+     larger than the page that contains it. */
+  margin-left: -0.055em;
+}
+
+/* Middle line switches to the serif in italic. Two voices in one
+   sentence is the whole typographic idea of the site. */
+.heroSerif {
+  font-family: var(--font-display);
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  display: block;
+}
+
+.heroLede {
+  max-width: 30ch;
+  color: var(--fg-muted);
+  font-size: var(--t-lead);
+  line-height: 1.42;
+  text-wrap: pretty;
+}
+
+.heroBottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(1.5rem, 5vw, 5rem);
+  flex-wrap: wrap;
+}
+
+.heroCue {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.heroCueLine {
+  display: block;
+  width: 46px;
+  height: 1px;
+  background: var(--rule-strong);
+  position: relative;
+  overflow: hidden;
+}
+.heroCueLine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform-origin: left center;
+  animation: cue 2.6s var(--e-inout) infinite;
+}
+@keyframes cue {
+  0% { transform: scaleX(0); transform-origin: left center; }
+  45% { transform: scaleX(1); transform-origin: left center; }
+  55% { transform: scaleX(1); transform-origin: right center; }
+  100% { transform: scaleX(0); transform-origin: right center; }
+}
+
+/* ---------------- 01 — DESCENT ---------------- */
+
+.descent {
+  min-height: 118svh;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  align-content: center;
+  padding-block: clamp(6rem, 16vh, 12rem);
+}
+
+.descentPlate {
+  grid-column: 1 / span 4;
+  aspect-ratio: 3 / 4.4;
+  align-self: start;
+}
+
+.descentText {
+  grid-column: 7 / span 6;
+  align-self: center;
+  display: grid;
+  gap: clamp(1.4rem, 3vw, 2.4rem);
+}
+
+.statement {
+  font-family: var(--font-display);
+  font-size: var(--t-h1);
+  line-height: 1.06;
+  letter-spacing: -0.018em;
+  text-wrap: pretty;
+}
+
+.body {
+  color: var(--fg-muted);
+  max-width: 44ch;
+  line-height: 1.62;
+}
+
+/* A run of small facts, set as a hairline-ruled table. */
+.facts {
+  display: grid;
+  gap: 0;
+  margin-top: 0.6rem;
+}
+.fact {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.62rem 0;
+  border-top: 1px solid var(--rule);
+}
+.fact:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+.factK {
+  color: var(--fg-faint);
+}
+.factV {
+  color: var(--fg);
+  text-align: right;
+}
+
+/* ---------------- 02 — MEDIUM ---------------- */
+
+.medium {
+  min-height: 108svh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  justify-items: center;
+  text-align: center;
+  padding-block: clamp(5rem, 12vh, 8rem) clamp(4rem, 9vh, 6rem);
+  row-gap: clamp(1.5rem, 4vh, 3rem);
+}
+
+.colossal {
+  font-family: var(--font-display);
+  font-size: var(--t-colossal);
+  line-height: 0.82;
+  letter-spacing: -0.035em;
+  text-align: center;
+}
+.colossalItalic {
+  font-style: italic;
+  display: block;
+}
+
+.mediumNote {
+  max-width: 40ch;
+  color: var(--fg-muted);
+  line-height: 1.6;
+  text-align: left;
+  justify-self: start;
+  align-self: end;
+}
+
+/* ---------------- 03 — INSCRIPTION ---------------- */
+
+.inscription {
+  min-height: 118svh;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  align-content: center;
+  padding-block: clamp(6rem, 16vh, 12rem);
+}
+
+.specCol {
+  grid-column: 8 / span 5;
+  display: grid;
+  gap: 1.1rem;
+}
+
+.specHead {
+  font-family: var(--font-sans);
+  font-size: var(--t-h2);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  line-height: 0.96;
+}
+
+/* Readouts that look like instrument output rather than marketing. */
+.readouts {
+  display: grid;
+  gap: 0;
+  margin-top: 0.8rem;
+}
+.readout {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--rule);
+  align-items: baseline;
+}
+.readoutV {
+  font-family: var(--font-mono);
+  font-size: clamp(0.95rem, 1.5vw, 1.3rem);
+  letter-spacing: -0.01em;
+  text-align: right;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------- 04 — SEQUENCE ---------------- */
+
+.sequence {
+  min-height: 130svh;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  align-content: center;
+  padding-block: clamp(6rem, 16vh, 12rem);
+}
+
+.bedList {
+  grid-column: 1 / span 4;
+  display: grid;
+  gap: 0;
+}
+.bed {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.9rem;
+  align-items: baseline;
+  padding: 0.5rem 0;
+  border-top: 1px solid var(--rule);
+}
+.bedSwatch {
+  width: 26px;
+  height: 4px;
+  align-self: center;
+}
+.bedDepth {
+  text-align: right;
+  color: var(--fg-faint);
+}
+
+.sequenceText {
+  grid-column: 8 / span 5;
+  align-self: end;
+  display: grid;
+  gap: 1.2rem;
+}
+
+/* ---------------- 05 — VAULT (takeover) ---------------- */
+
+/* This is the environment change: a full-bleed plate that occludes the
+   canvas entirely, so the visitor arrives somewhere else. */
+.vault {
+  position: relative;
+  min-height: 150svh;
+  isolation: isolate;
+}
+
+.vaultSticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.vaultPlate {
+  position: absolute;
+  inset: 0;
+}
+
+.vaultVeil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, #07100e 92%, transparent) 0%,
+    color-mix(in srgb, #07100e 30%, transparent) 45%,
+    color-mix(in srgb, #07100e 72%, transparent) 100%
+  );
+}
+
+.vaultCopy {
+  position: absolute;
+  left: max(var(--gutter), var(--rail));
+  right: var(--gutter);
+  bottom: clamp(3.5rem, 10vh, 7rem);
+  display: grid;
+  gap: 1.2rem;
+  max-width: 46ch;
+}
+
+.vaultTitle {
+  font-family: var(--font-display);
+  font-size: var(--t-display);
+  line-height: 0.9;
+  letter-spacing: -0.028em;
+}
+
+/* ---------------- 06 — DISPERSAL ---------------- */
+
+.dispersal {
+  min-height: 112svh;
+  display: grid;
+  align-content: center;
+  padding-block: clamp(6rem, 16vh, 12rem);
+}
+
+.dispersalGrid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: clamp(2rem, 5vw, 4rem);
+}
+.dispersalLead {
+  grid-column: 1 / span 5;
+}
+.dispersalRight {
+  grid-column: 8 / span 5;
+  align-self: end;
+}
+
+/* ---------------- 07 — MANDATE (light inversion) ---------------- */
+
+/* The one moment the site returns to daylight. Coming after four dark
+   scenes it lands like a cut to a white room. */
+.mandate {
+  position: relative;
+  background: var(--paper);
+  color: var(--void);
+  min-height: 118svh;
+  padding-block: clamp(5rem, 12vh, 8rem);
+  display: grid;
+  align-content: center;
+  /* Rounded top edge: the previous scene appears to slide underneath. */
+  border-radius: clamp(1.4rem, 3vw, 2.6rem) clamp(1.4rem, 3vw, 2.6rem) 0 0;
+}
+
+.mandateInner {
+  display: grid;
+  gap: clamp(2.4rem, 6vw, 5rem);
+}
+
+.timeline {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--rule-strong);
+}
+.era {
+  display: grid;
+  grid-template-columns: minmax(4.5rem, 8rem) 1fr minmax(6rem, 14rem);
+  gap: clamp(0.8rem, 2.4vw, 2rem);
+  align-items: baseline;
+  padding: clamp(0.75rem, 1.8vw, 1.15rem) 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+  overflow: hidden;
+}
+/* A bar whose width encodes the era's span — data, not decoration. */
+.eraBar {
+  position: relative;
+  height: 3px;
+  background: color-mix(in srgb, var(--void) 12%, transparent);
+}
+.eraBarFill {
+  position: absolute;
+  inset: 0;
+  background: var(--void);
+  transform-origin: left center;
+}
+.eraBarFill[data-hot='true'] {
+  background: var(--oxide);
+}
+.eraName {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+}
+
+/* ---------------- 08 — READER (horizontal) ---------------- */
+
+.reader {
+  position: relative;
+  background: var(--void);
+  color: var(--paper);
+}
+
+.readerSticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  gap: clamp(1.2rem, 3vw, 2.6rem);
+  padding-inline: max(var(--gutter), var(--rail));
+  will-change: transform;
+}
+
+/* Fallback for touch and reduced motion.
+   A pinned, scrubbed track is the wrong instrument on a phone — and
+   under reduced motion the pin never initialises at all, which would
+   leave every card after the first clipped and unreachable. Both cases
+   get a real horizontal scroller with snap points instead. */
+.reader[data-native='true'] {
+  min-height: auto;
+  padding-block: clamp(3rem, 10vh, 6rem);
+}
+.reader[data-native='true'] .readerSticky {
+  position: static;
+  height: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule-strong) transparent;
+}
+.reader[data-native='true'] .track {
+  transform: none !important;
+  padding-block: 0.5rem;
+}
+.reader[data-native='true'] .card,
+.reader[data-native='true'] .readerIntro {
+  scroll-snap-align: center;
+}
+.reader[data-native='true'] .readerIntro {
+  scroll-snap-align: start;
+}
+
+.card {
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(15rem, 30vw, 26rem);
+  display: grid;
+  gap: 0.9rem;
+}
+.cardPlate {
+  aspect-ratio: 3 / 4;
+  width: 100%;
+}
+.cardMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2vw, 1.6rem);
+  line-height: 1.1;
+}
+
+.readerIntro {
+  flex: 0 0 auto;
+  width: clamp(17rem, 34vw, 30rem);
+  display: grid;
+  gap: 1.2rem;
+  align-content: center;
+}
+
+/* ---------------- 09 — TRANSMIT ---------------- */
+
+.transmit {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+  padding-block: clamp(7rem, 18vh, 13rem);
+}
+
+/* ---------------- responsive ---------------- */
+
+@media (max-width: 1024px) {
+  .descentPlate { grid-column: 1 / span 5; }
+  .descentText { grid-column: 7 / span 6; }
+  .specCol { grid-column: 7 / span 6; }
+  .bedList { grid-column: 1 / span 5; }
+  .sequenceText { grid-column: 7 / span 6; }
+  .dispersalLead { grid-column: 1 / span 6; }
+  .dispersalRight { grid-column: 7 / span 6; }
+}
+
+@media (max-width: 860px) {
+  .descent,
+  .inscription,
+  .sequence {
+    grid-template-columns: 1fr;
+    row-gap: clamp(2rem, 7vw, 3.5rem);
+    min-height: auto;
+  }
+  .descentPlate,
+  .descentText,
+  .specCol,
+  .bedList,
+  .sequenceText,
+  .dispersalLead,
+  .dispersalRight {
+    grid-column: 1 / -1;
+  }
+  .dispersalGrid {
+    grid-template-columns: 1fr;
+  }
+  .descentPlate {
+    aspect-ratio: 4 / 3;
+  }
+  .heroTop {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+  }
+  .heroLede {
+    max-width: 38ch;
+  }
+  .era {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+  .eraBar {
+    order: 3;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero {
+    padding-block: clamp(5rem, 12vh, 7rem) 2rem;
+  }
+  .heroBottom {
+    gap: 1.4rem;
+  }
+  .fact {
+    font-size: 0.7rem;
+  }
+}
