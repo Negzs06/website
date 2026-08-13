@@ -41,7 +41,7 @@ export const PLATES = [
     "sizes": [
       640,
       1280,
-      1920
+      1800
     ],
     "lqip": "data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAADwAgCdASoYAA4APulgqE2pJaQpMAgBIB0JZwCsADDWAAD+7K77Sgg/Rla/rK57NAAAAA=="
   },
@@ -53,7 +53,7 @@ export const PLATES = [
     "sizes": [
       640,
       1280,
-      1920
+      1800
     ],
     "lqip": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAABwAwCdASoYAA4ALq10ul0jKSkpCQCsSyAABc6zqniW9SbojeAA/vkp6fdHW68My/AeOeU7IRfIxKCD95+h8R18OaEj1iDS0OFL+DGDV6pOAAAA"
   },
@@ -65,7 +65,7 @@ export const PLATES = [
     "sizes": [
       640,
       1280,
-      1920
+      1800
     ],
     "lqip": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAADQAwCdASoYAAoAPulgqU0pJaQiMAgBIB0JZQC7ACPtvoEJLBDCWQAA/qGOVTOVPrgxGBofvewHvGM+G4AAAA=="
   },
@@ -88,7 +88,7 @@ export const PLATES = [
     "sizes": [
       640,
       1280,
-      1920
+      1800
     ],
     "lqip": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAACQAwCdASoYABAAPulep00pJSOiMAgBIB0JZQCsAA1ssVj6pRQAAP6BO+5NFGqnqpLUwr2okQVo2EHxaegqCqmp7TLoDUOVr3Na58OFjkYRrUB67YlCqjUjHyLzRIAA"
   },
@@ -111,7 +111,7 @@ export const PLATES = [
     "sizes": [
       640,
       1280,
-      1920
+      1800
     ],
     "lqip": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAABQBACdASoYAA4APulep00pJSOiMAgBIB0JZwDDNCFspCtoJpaDl3OftgOAAP7y292B1lEroRgUDpCJX+/pD+5awiu4IQWA6LVk8K9GuJpvRlTnOp+h6BOkLJrgAA=="
   },

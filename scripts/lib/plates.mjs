@@ -808,9 +808,11 @@ export const PLATES = [
    ------------------------------------------------------------ */
 export const TEXTURES = [
   {
-    name: 'noise-rgba',
-    w: 512,
-    h: 512,
+    name: 'noise',
+    w: 256,
+    h: 256,
+    // Only one channel is ever sampled, so this is written as greyscale.
+    greyscale: true,
     seed: 5.0,
     format: 'png',
     body: /* glsl */ `

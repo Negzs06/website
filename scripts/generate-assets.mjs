@@ -24,7 +24,7 @@ const IMG_DIR = path.join(ROOT, 'public/images');
 const TEX_DIR = path.join(ROOT, 'public/textures');
 const MANIFEST = path.join(ROOT, 'src/data/plates.generated.ts');
 
-const WIDTHS = [640, 1280, 1920];
+const WIDTHS = [640, 1280, 1800];
 const MAX_SS_PIXELS = 15_000_000; // supersample budget per render
 const MAX_SS_DIM = 4000; // keep the render inside a sane viewport
 
@@ -215,14 +215,14 @@ async function main() {
       if (w > plate.w * 1.02) continue;
       const h = Math.round((w / plate.w) * plate.h);
       const buf = await base.clone().resize(w, h, { kernel: 'lanczos3' }).toBuffer();
-      await sharp(buf).avif({ quality: 62, effort: 5 }).toFile(path.join(IMG_DIR, `${plate.name}-${w}.avif`));
-      await sharp(buf).webp({ quality: 80, effort: 5 }).toFile(path.join(IMG_DIR, `${plate.name}-${w}.webp`));
+      await sharp(buf).avif({ quality: 52, effort: 7 }).toFile(path.join(IMG_DIR, `${plate.name}-${w}.avif`));
+      await sharp(buf).webp({ quality: 74, effort: 6 }).toFile(path.join(IMG_DIR, `${plate.name}-${w}.webp`));
     }
     // Native-size fallback when the plate is smaller than the largest step.
     const largest = Math.max(...WIDTHS.filter((w) => w <= plate.w * 1.02), 0);
     if (largest === 0) {
-      await base.clone().avif({ quality: 62, effort: 5 }).toFile(path.join(IMG_DIR, `${plate.name}-${plate.w}.avif`));
-      await base.clone().webp({ quality: 80, effort: 5 }).toFile(path.join(IMG_DIR, `${plate.name}-${plate.w}.webp`));
+      await base.clone().avif({ quality: 52, effort: 7 }).toFile(path.join(IMG_DIR, `${plate.name}-${plate.w}.avif`));
+      await base.clone().webp({ quality: 74, effort: 6 }).toFile(path.join(IMG_DIR, `${plate.name}-${plate.w}.webp`));
       meta.sizes = [plate.w];
     } else {
       meta.sizes = WIDTHS.filter((w) => w <= plate.w * 1.02);
@@ -247,7 +247,9 @@ async function main() {
     if (only.length && !only.includes(tex.name)) continue;
     log(`${tex.name}  ${tex.w}×${tex.h}  (texture)`);
     const png = await shoot(tex, tex.w, tex.h);
-    await sharp(png).png({ compressionLevel: 9 }).toFile(path.join(TEX_DIR, `${tex.name}.png`));
+    let out = sharp(png);
+    if (tex.greyscale) out = out.greyscale();
+    await out.png({ compressionLevel: 9, palette: false }).toFile(path.join(TEX_DIR, `${tex.name}.png`));
     log('  ✓ written');
   }
 

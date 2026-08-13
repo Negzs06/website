@@ -43,7 +43,7 @@ function Quad({ plates, active }: Props) {
   }, [plates, sizes]);
 
   const noise = useMemo(() => {
-    const t = new THREE.TextureLoader().load('/textures/noise-rgba.png');
+    const t = new THREE.TextureLoader().load('/textures/noise.png');
     t.wrapS = t.wrapT = THREE.RepeatWrapping;
     return t;
   }, []);
