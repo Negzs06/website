@@ -1,0 +1,756 @@
+<title>Lume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --font-display:"Bricolage Grotesque", "Hanken Grotesk", system-ui, sans-serif;
+  --font-body:"Hanken Grotesk", system-ui, -apple-system, sans-serif;
+  --font-mono:"JetBrains Mono", ui-monospace, monospace;
+
+  /* showcase chrome — light */
+  --bg:#F5F2EF;
+  --bg-2:#EEE9E4;
+  --surface:#FFFFFF;
+  --surface-2:#F3EFEB;
+  --border:#E4DDD5;
+  --border-2:#D8CFC5;
+  --text:#1B1720;
+  --muted:#6C6472;
+  --faint:#948B96;
+
+  /* ember signature (constant across themes) */
+  --e-amber:#FFB65C;
+  --e-rose:#FF6E8E;
+  --e-pink:#F94E8B;
+  --ember:linear-gradient(135deg,#FFB65C 0%,#FF6E8E 52%,#F94E8B 100%);
+  --ember-soft:linear-gradient(135deg,rgba(255,182,92,.16),rgba(249,78,139,.16));
+  --accent-ink:#B23A5C; /* readable ember tone on light */
+
+  --shadow-sm:0 1px 2px rgba(26,20,30,.06), 0 4px 16px rgba(26,20,30,.06);
+  --shadow-lg:0 30px 70px -30px rgba(30,10,25,.35), 0 8px 30px -12px rgba(30,10,25,.2);
+  --ring:0 0 0 3px rgba(249,78,139,.35);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C0B10;
+    --bg-2:#0A090E;
+    --surface:#151320;
+    --surface-2:#1C1A27;
+    --border:#282533;
+    --border-2:#332F3F;
+    --text:#F3F0F8;
+    --muted:#9E98AC;
+    --faint:#6E687C;
+    --accent-ink:#FF9DB6;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.35);
+    --shadow-lg:0 40px 90px -30px rgba(0,0,0,.7), 0 10px 40px -14px rgba(0,0,0,.55);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C0B10;
+  --bg-2:#0A090E;
+  --surface:#151320;
+  --surface-2:#1C1A27;
+  --border:#282533;
+  --border-2:#332F3F;
+  --text:#F3F0F8;
+  --muted:#9E98AC;
+  --faint:#6E687C;
+  --accent-ink:#FF9DB6;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.35);
+  --shadow-lg:0 40px 90px -30px rgba(0,0,0,.7), 0 10px 40px -14px rgba(0,0,0,.55);
+}
+
+/* ============ BASE ============ */
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  font-family:var(--font-body);
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit}
+::selection{background:rgba(249,78,139,.28)}
+:focus-visible{outline:none; box-shadow:var(--ring); border-radius:12px}
+
+/* ============ BACKGROUND DECOR ============ */
+.bg-decor{position:fixed; inset:0; z-index:-1; overflow:hidden; pointer-events:none}
+.blob{position:absolute; border-radius:50%; filter:blur(90px); opacity:.5}
+.blob.a{width:560px;height:560px;top:-160px;right:-120px;background:radial-gradient(circle at 30% 30%,rgba(255,182,92,.55),transparent 65%)}
+.blob.b{width:620px;height:620px;top:34%;left:-220px;background:radial-gradient(circle at 40% 40%,rgba(249,78,139,.5),transparent 62%)}
+.blob.c{width:480px;height:480px;bottom:-160px;right:-80px;background:radial-gradient(circle at 50% 50%,rgba(255,110,142,.45),transparent 62%)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .blob{opacity:.32}}
+:root[data-theme="dark"] .blob{opacity:.32}
+.grain{position:absolute; inset:0; opacity:.045; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+/* ============ LAYOUT ============ */
+.wrap{max-width:1180px; margin:0 auto; padding-inline:22px}
+section{position:relative}
+.eyebrow{
+  font-family:var(--font-mono); font-size:.72rem; letter-spacing:.24em;
+  text-transform:uppercase; color:var(--accent-ink); font-weight:600;
+  display:inline-flex; align-items:center; gap:.6em;
+}
+.eyebrow::before{content:""; width:22px; height:1px; background:currentColor; opacity:.6}
+h1,h2,h3{font-family:var(--font-display); font-weight:700; line-height:1.04; text-wrap:balance; margin:0}
+.sec-head{max-width:640px; margin-bottom:38px}
+.sec-head h2{font-size:clamp(1.75rem,4vw,2.6rem); letter-spacing:-.02em; margin:14px 0 12px}
+.sec-head p{color:var(--muted); font-size:1.05rem; margin:0}
+
+/* ============ TOP BAR ============ */
+.topbar{
+  position:sticky; top:0; z-index:60;
+  backdrop-filter:blur(16px) saturate(1.3);
+  background:color-mix(in srgb, var(--bg) 72%, transparent);
+  border-bottom:1px solid var(--border);
+}
+.topbar .wrap{display:flex; align-items:center; justify-content:space-between; height:64px}
+.brand{display:flex; align-items:center; gap:11px; font-family:var(--font-display); font-weight:700; font-size:1.18rem; letter-spacing:-.01em}
+.brand .dot{width:26px;height:26px;border-radius:50%;background:var(--ember);box-shadow:0 0 18px rgba(249,78,139,.6), inset 0 2px 4px rgba(255,255,255,.6)}
+.top-actions{display:flex; align-items:center; gap:10px}
+.tag-pill{font-family:var(--font-mono); font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);
+  border:1px solid var(--border); padding:6px 12px; border-radius:999px}
+@media (max-width:560px){.tag-pill{display:none}}
+.icon-btn{
+  width:42px;height:42px;border-radius:13px;border:1px solid var(--border);
+  background:var(--surface); color:var(--text); cursor:pointer; display:grid; place-items:center;
+  transition:transform .15s ease, border-color .2s ease, background .2s ease;
+}
+.icon-btn:hover{transform:translateY(-1px); border-color:var(--border-2)}
+.icon-btn svg{width:19px;height:19px}
+.moon{display:none}
+:root[data-theme="dark"] .moon{display:block}
+:root[data-theme="dark"] .sun{display:none}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .moon{display:block}
+  :root:not([data-theme="light"]) .sun{display:none}
+}
+
+/* ============ BUTTONS ============ */
+.btn{
+  font-family:var(--font-body); font-weight:600; font-size:.98rem; cursor:pointer;
+  border:none; border-radius:14px; padding:13px 22px; display:inline-flex; align-items:center; gap:9px;
+  transition:transform .15s ease, box-shadow .2s ease, background .2s ease; text-decoration:none;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--ember); color:#231018; box-shadow:0 10px 30px -8px rgba(249,78,139,.55)}
+.btn-primary:hover{box-shadow:0 16px 40px -10px rgba(249,78,139,.7)}
+.btn-ghost{background:var(--surface); color:var(--text); border:1px solid var(--border)}
+
+/* ============ HERO ============ */
+.hero{padding-top:56px; padding-bottom:40px; overflow:hidden}
+.hero .wrap{display:grid; grid-template-columns:1.05fr .95fr; gap:40px; align-items:center}
+.hero-copy h1{font-size:clamp(2.7rem,6vw,4.3rem); letter-spacing:-.035em; margin:20px 0 20px; font-weight:800}
+.hero-copy h1 .glow{background:var(--ember); -webkit-background-clip:text; background-clip:text; color:transparent}
+.hero-copy p.lead{font-size:1.16rem; color:var(--muted); max-width:34ch; margin:0 0 30px}
+.hero-cta{display:flex; gap:14px; flex-wrap:wrap; align-items:center}
+.hero-feats{display:flex; gap:22px; margin-top:34px; flex-wrap:wrap}
+.hero-feats div{display:flex; flex-direction:column; gap:2px}
+.hero-feats b{font-family:var(--font-display); font-size:1.5rem; letter-spacing:-.02em}
+.hero-feats span{font-size:.82rem; color:var(--faint)}
+.hero-stage{position:relative; display:flex; justify-content:center; perspective:1600px; min-height:700px}
+.hero-glow{position:absolute; width:340px;height:340px; top:44%; left:50%; transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(249,78,139,.55),rgba(255,182,92,.25) 45%,transparent 70%); filter:blur(30px); z-index:0}
+.hero-stage .phone.main{transform:rotateY(-16deg) rotateX(4deg) rotateZ(1deg); z-index:3}
+.hero-stage .phone.side{position:absolute; left:calc(50% - 250px); top:70px; transform:rotateY(-16deg) rotateX(6deg) scale(.86); opacity:.85; z-index:1}
+@media (max-width:900px){
+  .hero .wrap{grid-template-columns:1fr; gap:8px}
+  .hero-stage{min-height:600px; margin-top:8px}
+  .hero-stage .phone.main{transform:none}
+  .hero-stage .phone.side{display:none}
+}
+
+/* ============ PHONE / DEVICE ============ */
+.phone{width:300px; flex:0 0 auto}
+.phone-frame{
+  position:relative; width:300px; height:672px; border-radius:46px; padding:9px;
+  background:linear-gradient(155deg,#39343f,#131118 60%);
+  box-shadow:var(--shadow-lg), inset 0 0 0 1px rgba(255,255,255,.06);
+}
+.phone-frame::after{content:""; position:absolute; inset:9px; border-radius:38px; box-shadow:inset 0 0 0 2px rgba(0,0,0,.55); pointer-events:none; z-index:30}
+.screen{
+  position:relative; width:100%; height:100%; border-radius:38px; overflow:hidden;
+  display:flex; flex-direction:column; font-size:14px; line-height:1.5;
+  /* app tokens — dark (default) */
+  --app-bg:#0B0A0F; --app-surf:#16141F; --app-elev:#211E2C; --app-bord:#2A2735;
+  --app-txt:#F4F1FA; --app-mut:#8E899E; --app-faint:#5D5870; --app-accent:#FF8FAC;
+  background:var(--app-bg); color:var(--app-txt);
+}
+.screen--light{
+  --app-bg:#FBF9F7; --app-surf:#FFFFFF; --app-elev:#F2EEEA; --app-bord:#E8E1DA;
+  --app-txt:#1B1720; --app-mut:#77707E; --app-faint:#A69EAA; --app-accent:#C23F63;
+}
+.island{position:absolute; top:12px; left:50%; transform:translateX(-50%); width:92px; height:26px; background:#000; border-radius:16px; z-index:25}
+.statusbar{
+  height:46px; flex:0 0 auto; display:flex; align-items:flex-end; justify-content:space-between;
+  padding:0 20px 6px; font-family:var(--font-mono); font-size:12px; font-weight:600; color:var(--app-txt);
+}
+.statusbar .sig{display:flex; align-items:center; gap:6px}
+.statusbar svg{display:block}
+
+/* app generic */
+.app-head{flex:0 0 auto; display:flex; align-items:center; justify-content:space-between; padding:6px 16px 12px}
+.app-head .title{font-family:var(--font-display); font-weight:600; font-size:1rem}
+.app-icon{width:34px;height:34px;border-radius:11px; display:grid; place-items:center; color:var(--app-txt); background:var(--app-surf); border:1px solid var(--app-bord); cursor:pointer}
+.app-icon svg{width:18px;height:18px}
+.app-body{flex:1 1 auto; overflow:hidden; display:flex; flex-direction:column; min-height:0}
+
+/* ORB */
+.orb{border-radius:50%; position:relative; flex:0 0 auto;
+  background:
+    radial-gradient(circle at 32% 26%, #FFF3E0 0%, #FFC46B 16%, #FF6E8E 52%, #F0357E 78%, #B21E63 100%);
+  box-shadow:0 8px 30px -6px rgba(249,78,139,.6), inset -3px -5px 12px rgba(120,10,60,.5), inset 3px 4px 10px rgba(255,255,255,.55);
+}
+.orb::after{content:""; position:absolute; top:14%; left:18%; width:34%; height:26%; border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.9),transparent 70%); filter:blur(1px)}
+.orb.lg{width:120px;height:120px}
+.orb.md{width:52px;height:52px}
+.orb.sm{width:30px;height:30px}
+.orb.xs{width:24px;height:24px}
+.orb-halo{position:relative; display:grid; place-items:center}
+.orb-halo::before{content:""; position:absolute; width:150%; height:150%; border-radius:50%;
+  background:radial-gradient(circle,rgba(249,78,139,.45),transparent 68%); filter:blur(14px); z-index:-1; animation:pulse 4s ease-in-out infinite}
+
+/* greeting / home */
+.greet{padding:8px 18px 4px}
+.greet .hi{font-family:var(--font-display); font-weight:700; font-size:1.55rem; letter-spacing:-.02em; line-height:1.15}
+.greet .hi .accent{background:var(--ember); -webkit-background-clip:text; background-clip:text; color:transparent}
+.greet .sub{color:var(--app-mut); font-size:.86rem; margin-top:4px}
+.sugs{display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:16px 16px 0}
+.sug{background:var(--app-surf); border:1px solid var(--app-bord); border-radius:15px; padding:11px; display:flex; flex-direction:column; gap:5px; min-height:78px}
+.sug .si{width:28px;height:28px;border-radius:8px; display:grid; place-items:center; color:#2a121c; background:var(--ember)}
+.sug .si svg{width:15px;height:15px}
+.sug b{font-size:.76rem; font-weight:600; letter-spacing:-.005em; line-height:1.2}
+.sug span{font-size:.71rem; color:var(--app-mut); line-height:1.3}
+
+/* chips */
+.chips{display:flex; gap:8px; padding:14px 16px 0; flex-wrap:wrap}
+.chip{font-size:.76rem; font-weight:500; border:1px solid var(--app-bord); background:var(--app-surf); color:var(--app-txt);
+  padding:7px 12px; border-radius:999px; display:inline-flex; align-items:center; gap:6px; white-space:nowrap}
+.chip svg{width:13px;height:13px; color:var(--app-accent)}
+
+/* input bar */
+.app-foot{flex:0 0 auto; padding:10px 14px calc(14px + env(safe-area-inset-bottom))}
+.inputbar{display:flex; align-items:center; gap:8px; background:var(--app-surf); border:1px solid var(--app-bord);
+  border-radius:22px; padding:7px 8px 7px 14px; box-shadow:0 6px 20px -10px rgba(0,0,0,.5)}
+.inputbar .ph{flex:1; color:var(--app-faint); font-size:.86rem}
+.inputbar .mini{width:30px;height:30px;border-radius:50%; display:grid; place-items:center; color:var(--app-mut)}
+.inputbar .mini svg{width:17px;height:17px}
+.inputbar .go{width:36px;height:36px;border-radius:50%; display:grid; place-items:center; color:#2a121c; background:var(--ember); flex:0 0 auto}
+.inputbar .go svg{width:18px;height:18px}
+.foot-note{text-align:center; font-size:.66rem; color:var(--app-faint); margin-top:8px}
+
+/* chat */
+.chat{flex:1 1 auto; overflow:hidden; padding:6px 16px 2px; display:flex; flex-direction:column; gap:14px}
+.msg{display:flex; gap:9px; max-width:100%}
+.msg.user{justify-content:flex-end}
+.bubble{border-radius:18px; padding:10px 13px; font-size:.85rem; line-height:1.5}
+.msg.user .bubble{background:var(--ember); color:#28121c; border-bottom-right-radius:6px; max-width:80%; font-weight:500}
+.msg.ai{gap:10px}
+.msg.ai .bubble{background:var(--app-surf); border:1px solid var(--app-bord); border-bottom-left-radius:6px}
+.msg.ai .bubble p{margin:0 0 8px}
+.msg.ai .bubble p:last-child{margin-bottom:0}
+.msg.ai .bubble ul{margin:6px 0 8px; padding-left:16px}
+.msg.ai .bubble li{margin-bottom:4px}
+.msg.ai .bubble b{color:var(--app-accent)}
+.ai-name{font-size:.72rem; color:var(--app-mut); font-weight:600; margin-bottom:4px; letter-spacing:.02em}
+.msg-actions{display:flex; gap:14px; margin-top:8px; color:var(--app-faint)}
+.msg-actions svg{width:15px;height:15px; cursor:pointer}
+.typing{display:inline-flex; gap:5px; align-items:center; padding:4px 2px}
+.typing i{width:7px;height:7px;border-radius:50%; background:var(--app-accent); animation:blink 1.2s infinite ease-in-out}
+.typing i:nth-child(2){animation-delay:.2s} .typing i:nth-child(3){animation-delay:.4s}
+
+/* code block in app */
+.codeblk{background:#0e0d15; border:1px solid #262433; border-radius:12px; margin-top:8px; overflow:hidden; font-family:var(--font-mono)}
+.codeblk .cbar{display:flex; align-items:center; justify-content:space-between; padding:6px 11px; font-size:.68rem; color:#8b8698; border-bottom:1px solid #262433}
+.codeblk pre{margin:0; padding:10px 12px; font-size:.72rem; line-height:1.6; color:#e6e2f0; overflow-x:auto}
+.tok-k{color:#FF8FAC} .tok-f{color:#FFC46B} .tok-s{color:#8fe3b0} .tok-n{color:#c7a6ff} .tok-c{color:#615c72}
+
+/* drawer screen */
+.drawer-scr{position:relative}
+.scrim{position:absolute; inset:0; background:rgba(4,3,8,.55); z-index:5}
+.drawer{position:absolute; top:0; left:0; bottom:0; width:82%; z-index:6; background:var(--app-bg);
+  border-right:1px solid var(--app-bord); display:flex; flex-direction:column; box-shadow:20px 0 60px -20px rgba(0,0,0,.7)}
+.drawer .dtop{padding:52px 14px 10px}
+.search{display:flex; align-items:center; gap:8px; background:var(--app-surf); border:1px solid var(--app-bord); border-radius:12px; padding:9px 12px; color:var(--app-faint); font-size:.82rem}
+.search svg{width:16px;height:16px}
+.newchat{display:flex; align-items:center; gap:9px; margin:10px 0 4px; padding:11px 12px; border-radius:12px; background:var(--ember); color:#28121c; font-weight:600; font-size:.85rem}
+.newchat svg{width:17px;height:17px}
+.dlist{flex:1; overflow:hidden; padding:8px 8px 0}
+.dgroup{font-family:var(--font-mono); font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; color:var(--app-faint); padding:12px 8px 6px}
+.conv{display:flex; align-items:center; gap:10px; padding:9px 8px; border-radius:11px; font-size:.83rem; color:var(--app-txt)}
+.conv.active{background:var(--app-surf)}
+.conv .ci{width:16px;height:16px;color:var(--app-mut); flex:0 0 auto}
+.conv span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.conv.pin .ci{color:var(--app-accent)}
+.duser{border-top:1px solid var(--app-bord); padding:12px; display:flex; align-items:center; gap:10px}
+.duser .av{width:34px;height:34px;border-radius:50%; background:linear-gradient(135deg,#6a5cff,#a06bff); display:grid; place-items:center; color:#fff; font-weight:700; font-size:.8rem; flex:0 0 auto}
+.duser .un{font-size:.84rem; font-weight:600} .duser .ue{font-size:.7rem; color:var(--app-mut)}
+.pro-badge{margin-left:auto; font-family:var(--font-mono); font-size:.6rem; letter-spacing:.1em; padding:4px 8px; border-radius:999px; background:var(--ember-soft); color:var(--app-accent); border:1px solid rgba(249,78,139,.3)}
+
+/* login screen */
+.login{flex:1; display:flex; flex-direction:column; padding:20px 22px; justify-content:center; gap:0}
+.login .lg-head{text-align:center; margin-bottom:22px}
+.login h2{font-family:var(--font-display); font-size:1.5rem; letter-spacing:-.02em; margin:16px 0 6px}
+.login .lg-head p{color:var(--app-mut); font-size:.84rem; margin:0}
+.field{margin-bottom:11px}
+.field label{font-size:.72rem; color:var(--app-mut); font-weight:600; margin-bottom:5px; display:block}
+.field .inp{background:var(--app-surf); border:1px solid var(--app-bord); border-radius:13px; padding:12px 13px; font-size:.86rem; color:var(--app-txt); display:flex; align-items:center; justify-content:space-between}
+.field .inp.focus{border-color:var(--app-accent); box-shadow:0 0 0 3px rgba(249,78,139,.18)}
+.field .inp .cursor{width:1.5px; height:16px; background:var(--app-accent); animation:blink 1s step-end infinite}
+.field .inp svg{width:16px;height:16px; color:var(--app-mut)}
+.btn-app{width:100%; text-align:center; justify-content:center; padding:13px; border-radius:13px; background:var(--ember); color:#28121c; font-weight:700; font-size:.9rem; border:none; margin-top:6px}
+.divider{display:flex; align-items:center; gap:12px; color:var(--app-faint); font-size:.72rem; margin:16px 0}
+.divider::before,.divider::after{content:""; height:1px; flex:1; background:var(--app-bord)}
+.social{display:flex; gap:10px}
+.soc-btn{flex:1; display:flex; align-items:center; justify-content:center; gap:8px; padding:11px; border-radius:13px; border:1px solid var(--app-bord); background:var(--app-surf); font-size:.82rem; font-weight:600; color:var(--app-txt)}
+.soc-btn svg{width:17px;height:17px}
+.lg-foot{text-align:center; font-size:.8rem; color:var(--app-mut); margin-top:18px}
+.lg-foot b{color:var(--app-accent)}
+
+/* onboarding screen */
+.onb{flex:1; display:flex; flex-direction:column; align-items:center; text-align:center; padding:30px 24px 22px; justify-content:space-between}
+.onb .otop{flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px}
+.onb h2{font-family:var(--font-display); font-size:1.85rem; letter-spacing:-.03em; margin:0; line-height:1.1}
+.onb p{color:var(--app-mut); font-size:.9rem; margin:0; max-width:26ch}
+.onb .dots{display:flex; gap:7px; margin:14px 0}
+.onb .dots i{width:7px;height:7px;border-radius:50%; background:var(--app-bord)}
+.onb .dots i.on{width:22px; border-radius:5px; background:var(--ember)}
+.onb .obtns{width:100%; display:flex; flex-direction:column; gap:10px}
+.onb .oskip{color:var(--app-mut); font-size:.82rem}
+
+/* settings screen */
+.settings{flex:1; overflow:hidden; padding:4px 14px}
+.set-prof{display:flex; align-items:center; gap:12px; padding:14px; background:var(--app-surf); border:1px solid var(--app-bord); border-radius:16px; margin-bottom:14px}
+.set-prof .av{width:46px;height:46px;border-radius:50%; background:linear-gradient(135deg,#6a5cff,#a06bff); display:grid; place-items:center; color:#fff; font-weight:700; flex:0 0 auto}
+.set-prof .un{font-family:var(--font-display); font-weight:600; font-size:.98rem}
+.set-prof .ue{font-size:.74rem; color:var(--app-mut)}
+.set-prof .chev{margin-left:auto; color:var(--app-faint)}
+.set-grp{font-family:var(--font-mono); font-size:.62rem; letter-spacing:.16em; text-transform:uppercase; color:var(--app-faint); padding:6px 4px 6px}
+.set-card{background:var(--app-surf); border:1px solid var(--app-bord); border-radius:14px; overflow:hidden; margin-bottom:14px}
+.set-row{display:flex; align-items:center; gap:12px; padding:12px 14px; border-bottom:1px solid var(--app-bord)}
+.set-row:last-child{border-bottom:none}
+.set-row .ri{width:30px;height:30px;border-radius:9px; display:grid; place-items:center; background:var(--ember-soft); color:var(--app-accent); flex:0 0 auto}
+.set-row .ri svg{width:16px;height:16px}
+.set-row .rt{font-size:.85rem; font-weight:500}
+.set-row .rv{margin-left:auto; color:var(--app-mut); font-size:.78rem; display:flex; align-items:center; gap:6px}
+.set-row .rv svg{width:15px;height:15px}
+.toggle{width:42px;height:24px;border-radius:999px; background:var(--ember); position:relative; flex:0 0 auto}
+.toggle.off{background:var(--app-bord)}
+.toggle i{position:absolute; top:3px; left:3px; width:18px;height:18px;border-radius:50%; background:#fff; transition:left .2s}
+.toggle.off i{left:3px} .toggle:not(.off) i{left:21px}
+.segmented{display:flex; background:var(--app-elev); border-radius:9px; padding:3px; margin-left:auto}
+.segmented b{font-size:.72rem; padding:5px 10px; border-radius:7px; color:var(--app-mut); font-weight:500}
+.segmented b.on{background:var(--app-surf); color:var(--app-txt); box-shadow:0 1px 3px rgba(0,0,0,.2)}
+
+/* ============ SCREENS GALLERY ============ */
+.gallery{padding:30px 0 20px}
+.grid{display:grid; grid-template-columns:repeat(3,1fr); gap:46px 20px; justify-items:center}
+@media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr); gap:40px 16px}}
+@media (max-width:600px){.grid{grid-template-columns:1fr}}
+.screen-card{display:flex; flex-direction:column; align-items:center; gap:0}
+.screen-card .cap{margin-top:20px; text-align:center; max-width:280px}
+.screen-card .cap .n{font-family:var(--font-mono); font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-ink); font-weight:600}
+.screen-card .cap h3{font-family:var(--font-display); font-size:1.12rem; margin:6px 0 4px; letter-spacing:-.01em}
+.screen-card .cap p{color:var(--muted); font-size:.86rem; margin:0}
+
+/* ============ DESIGN SYSTEM ============ */
+.ds{padding:40px 0}
+.ds-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px}
+@media (max-width:840px){.ds-grid{grid-template-columns:1fr}}
+.panel{background:var(--surface); border:1px solid var(--border); border-radius:22px; padding:24px; box-shadow:var(--shadow-sm)}
+.panel h3{font-family:var(--font-display); font-size:1.15rem; margin:0 0 4px; letter-spacing:-.01em}
+.panel .ph-sub{color:var(--muted); font-size:.85rem; margin:0 0 18px}
+.panel.span2{grid-column:1 / -1}
+
+/* palette */
+.swatches{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+@media (max-width:520px){.swatches{grid-template-columns:repeat(2,1fr)}}
+.sw{border-radius:14px; overflow:hidden; border:1px solid var(--border)}
+.sw .chip-c{height:64px}
+.sw .meta{padding:9px 11px; background:var(--surface)}
+.sw .meta b{font-size:.8rem; display:block}
+.sw .meta code{font-family:var(--font-mono); font-size:.68rem; color:var(--muted)}
+.sw.ember .chip-c{background:var(--ember)}
+.sw.ink .chip-c{background:#0B0A0F}
+.sw.surf .chip-c{background:#16141F}
+.sw.amber .chip-c{background:#FFB65C}
+.sw.rose .chip-c{background:#FF6E8E}
+.sw.pink .chip-c{background:#F94E8B}
+
+/* type specimen */
+.type-row{border-top:1px solid var(--border); padding:16px 0}
+.type-row:first-of-type{border-top:none; padding-top:0}
+.type-row .tl{font-family:var(--font-mono); font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; color:var(--faint); margin-bottom:6px}
+.tdisp{font-family:var(--font-display); font-size:2.1rem; font-weight:700; letter-spacing:-.03em; line-height:1}
+.tbody{font-family:var(--font-body); font-size:1.02rem; color:var(--text)}
+.tmono{font-family:var(--font-mono); font-size:.95rem; color:var(--muted)}
+
+/* component samples */
+.comp-wrap{display:flex; flex-wrap:wrap; gap:14px; align-items:flex-start}
+.comp-box{background:var(--surface-2); border:1px solid var(--border); border-radius:16px; padding:18px; flex:1 1 200px; min-width:180px}
+.comp-box .cl{font-family:var(--font-mono); font-size:.64rem; letter-spacing:.14em; text-transform:uppercase; color:var(--faint); margin-bottom:14px}
+.demo-stack{display:flex; flex-direction:column; gap:10px; align-items:flex-start}
+.d-btn-primary{background:var(--ember); color:#28121c; font-weight:600; border:none; border-radius:13px; padding:11px 18px; font-family:var(--font-body); font-size:.88rem}
+.d-btn-ghost{background:var(--surface); color:var(--text); border:1px solid var(--border-2); border-radius:13px; padding:11px 18px; font-family:var(--font-body); font-size:.88rem; font-weight:600}
+.d-chip{border:1px solid var(--border-2); background:var(--surface); border-radius:999px; padding:7px 14px; font-size:.8rem; font-weight:500; display:inline-flex; gap:6px; align-items:center}
+.d-chip svg{width:13px;height:13px;color:var(--accent-ink)}
+.d-bubble-u{background:var(--ember); color:#28121c; border-radius:16px 16px 5px 16px; padding:9px 13px; font-size:.84rem; font-weight:500; align-self:flex-end; max-width:80%}
+.d-bubble-a{background:var(--surface); border:1px solid var(--border); border-radius:16px 16px 16px 5px; padding:9px 13px; font-size:.84rem; max-width:85%}
+.d-toggle{width:46px;height:26px;border-radius:999px; background:var(--ember); position:relative}
+.d-toggle i{position:absolute; top:3px; left:23px; width:20px;height:20px;border-radius:50%; background:#fff}
+.orb-sizes{display:flex; align-items:flex-end; gap:14px}
+
+/* ============ FOOTER ============ */
+footer{border-top:1px solid var(--border); margin-top:40px; padding:34px 0 46px}
+footer .wrap{display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap}
+footer .brand{font-size:1.05rem}
+footer p{color:var(--faint); font-size:.82rem; margin:0; max-width:46ch}
+.foot-links{display:flex; gap:18px; font-size:.85rem; color:var(--muted)}
+.foot-links a{text-decoration:none}
+
+/* ============ ANIMATIONS ============ */
+@keyframes pulse{0%,100%{opacity:.7; transform:scale(1)} 50%{opacity:1; transform:scale(1.08)}}
+@keyframes blink{0%,100%{opacity:.25; transform:translateY(0)} 40%{opacity:1; transform:translateY(-2px)}}
+@keyframes float{0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)}}
+.floaty{animation:float 6s ease-in-out infinite}
+@media (prefers-reduced-motion: reduce){
+  *{animation:none !important; transition:none !important}
+}
+
+/* generic responsive */
+@media (max-width:520px){
+  .wrap{padding-inline:16px}
+  .panel{padding:18px}
+  .hero-feats{gap:16px}
+}
+</style>
+
+<div class="bg-decor">
+  <div class="blob a"></div><div class="blob b"></div><div class="blob c"></div>
+  <div class="grain"></div>
+</div>
+
+<!-- ============ TOP BAR ============ -->
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span> Lume</div>
+    <div class="top-actions">
+      <span class="tag-pill">Design de produto · Mobile</span>
+      <button class="icon-btn" id="themeToggle" aria-label="Alternar tema">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.2 6.2 0 0 0 10.5 10.5z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="eyebrow">Conceito de app · Chatbot IA</span>
+      <h1>Um chatbot com <span class="glow">alma acesa.</span></h1>
+      <p class="lead">Lume é uma inteligência conversacional para o dia a dia — rápida, calorosa e desenhada para caber na palma da mão. Este é o sistema visual completo.</p>
+      <div class="hero-cta">
+        <a href="#telas" class="btn btn-primary">Ver as telas
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#sistema" class="btn btn-ghost">Sistema de design</a>
+      </div>
+      <div class="hero-feats">
+        <div><b>6</b><span>telas-chave</span></div>
+        <div><b>3</b><span>tipografias</span></div>
+        <div><b>2</b><span>temas (claro / escuro)</span></div>
+      </div>
+    </div>
+
+    <div class="hero-stage">
+      <div class="hero-glow"></div>
+      <!-- side phone: home -->
+      <div class="phone side">
+        <div class="phone-frame"><div class="screen">
+          <div class="island"></div>
+          <div class="statusbar"><span>9:41</span><span class="sig"><svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg><svg width="22" height="11" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1.5" width="18" height="9" rx="2.5"/><rect x="3" y="3.5" width="12" height="5" rx="1" fill="currentColor"/><rect x="20.5" y="4" width="2" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+          <div class="app-head"><div class="app-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h11"/></svg></div><div class="title">Lume</div><div class="app-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M4 12h16"/></svg></div></div>
+          <div class="app-body">
+            <div class="orb-halo" style="margin:6px 0 2px"><div class="orb md floaty"></div></div>
+            <div class="greet"><div class="hi" style="text-align:center">Boa noite,<br><span class="accent">Marcos</span></div></div>
+            <div class="sugs">
+              <div class="sug"><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg></div><b>Escrever e-mail</b><span>remarcar reunião</span></div>
+              <div class="sug"><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.4-7-11a7 7 0 0 1 14 0c0 5.6-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg></div><b>Planejar viagem</b><span>3 dias em Lisboa</span></div>
+            </div>
+          </div>
+          <div class="app-foot"><div class="inputbar"><span class="ph">Pergunte à Lume…</span><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg></span></div></div>
+        </div></div>
+      </div>
+      <!-- main phone: conversation -->
+      <div class="phone main">
+        <div class="phone-frame"><div class="screen">
+          <div class="island"></div>
+          <div class="statusbar"><span>9:41</span><span class="sig"><svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg><svg width="22" height="11" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1.5" width="18" height="9" rx="2.5"/><rect x="3" y="3.5" width="12" height="5" rx="1" fill="currentColor"/><rect x="20.5" y="4" width="2" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+          <div class="app-head"><div class="app-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h11"/></svg></div><div class="title" style="display:flex;align-items:center;gap:8px"><span class="orb xs"></span>Lume</div><div class="app-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M4 12h16"/></svg></div></div>
+          <div class="chat">
+            <div class="msg user"><div class="bubble">me explica o que é um buraco negro de um jeito simples</div></div>
+            <div class="msg ai"><div class="orb sm"></div><div><div class="ai-name">Lume</div><div class="bubble"><p>Imagine espremer uma estrela inteira num ponto tão pequeno que a gravidade fica <b>absurdamente forte</b>. Isso é um buraco negro.</p><p>Perto dele, nem a luz consegue escapar — por isso é "negro".</p></div>
+              <div class="msg-actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v4h4"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v11M7 10l4-7a2 2 0 0 1 2 1v4h5a2 2 0 0 1 2 2l-2 8a1 1 0 0 1-1 1H7"/></svg></div>
+            </div></div>
+            <div class="msg user"><div class="bubble">e se eu cair dentro?</div></div>
+            <div class="msg ai"><div class="orb sm"></div><div><div class="ai-name">Lume</div><div class="typing"><i></i><i></i><i></i></div></div></div>
+          </div>
+          <div class="app-foot"><div class="inputbar"><span class="mini"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15l-5-5L5 21"/><path d="M12.5 8.5a7 7 0 0 0-9 9"/><path d="M16 3l1.5 3L21 7.5 17.5 9 16 12l-1.5-3L11 7.5 14.5 6z"/></svg></span><span class="ph">Continue a conversa…</span><span class="mini"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4"/></svg></span><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg></span></div></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCREENS GALLERY ============ -->
+<section id="telas" class="gallery">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">O fluxo completo</span>
+      <h2>Seis telas, uma só linguagem</h2>
+      <p>Do primeiro toque à conversa fluindo. Cada tela usa a mesma grade, o mesmo tom quente e a mesma esfera luminosa como assinatura.</p>
+    </div>
+
+    <div class="grid">
+
+      <!-- 1. ONBOARDING -->
+      <div class="screen-card">
+        <div class="phone"><div class="phone-frame"><div class="screen">
+          <div class="island"></div>
+          <div class="statusbar"><span>9:41</span><span class="sig"><svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg><svg width="22" height="11" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1.5" width="18" height="9" rx="2.5"/><rect x="3" y="3.5" width="12" height="5" rx="1" fill="currentColor"/><rect x="20.5" y="4" width="2" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+          <div class="onb">
+            <div class="otop">
+              <div class="orb-halo"><div class="orb lg floaty"></div></div>
+              <div>
+                <h2>Olá, eu sou a Lume</h2>
+                <p style="margin:12px auto 0">Sua companhia inteligente para pensar, criar e resolver — a qualquer hora.</p>
+              </div>
+              <div class="dots"><i class="on"></i><i></i><i></i></div>
+            </div>
+            <div class="obtns">
+              <button class="btn-app">Começar agora</button>
+              <div class="oskip">Já tenho conta · <b style="color:var(--app-accent)">Entrar</b></div>
+            </div>
+          </div>
+        </div></div></div>
+        <div class="cap"><div class="n">01 · Boas-vindas</div><h3>Onboarding</h3><p>A esfera se apresenta. Um gesto, uma frase, um botão.</p></div>
+      </div>
+
+      <!-- 2. LOGIN -->
+      <div class="screen-card">
+        <div class="phone"><div class="phone-frame"><div class="screen">
+          <div class="island"></div>
+          <div class="statusbar"><span>9:41</span><span class="sig"><svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg><svg width="22" height="11" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1.5" width="18" height="9" rx="2.5"/><rect x="3" y="3.5" width="12" height="5" rx="1" fill="currentColor"/><rect x="20.5" y="4" width="2" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+          <div class="login">
+            <div class="lg-head"><div class="orb-halo"><div class="orb md"></div></div><h2>Bem-vindo de volta</h2><p>Entre para continuar suas conversas</p></div>
+            <div class="field"><label>E-mail</label><div class="inp"><span>marcos@email.com</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg></div></div>
+            <div class="field"><label>Senha</label><div class="inp focus"><span style="letter-spacing:3px">••••••••<span class="cursor"></span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
+            <button class="btn-app">Entrar</button>
+            <div class="divider">ou continue com</div>
+            <div class="social">
+              <div class="soc-btn"><svg viewBox="0 0 24 24"><path fill="#EA4335" d="M12 10.2v3.9h5.5c-.2 1.4-1.6 4.2-5.5 4.2-3.3 0-6-2.7-6-6s2.7-6 6-6c1.9 0 3.1.8 3.8 1.5l2.6-2.5C16.7 3.5 14.6 2.5 12 2.5 6.8 2.5 2.6 6.7 2.6 12s4.2 9.5 9.4 9.5c5.4 0 9-3.8 9-9.2 0-.6-.1-1.1-.2-1.6H12z"/></svg>Google</div>
+              <div class="soc-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.9c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.2 0 2-1.1 2.8-2.2.9-1.3 1.2-2.5 1.3-2.6-.1 0-2.4-.9-2.4-3.6zM14.2 6c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-1 2.8 1 .1 2.1-.5 2.8-1.2z"/></svg>Apple</div>
+            </div>
+            <div class="lg-foot">Novo por aqui? <b>Criar conta</b></div>
+          </div>
+        </div></div></div>
+        <div class="cap"><div class="n">02 · Acesso</div><h3>Entrar / Criar conta</h3><p>Campos calmos, foco em âmbar, social login em um toque.</p></div>
+      </div>
+
+      <!-- 3. HOME -->
+      <div class="screen-card">
+        <div class="phone"><div class="phone-frame"><div class="screen">
+          <div class="island"></div>
+          <div class="statusbar"><span>9:41</span><span class="sig"><svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg><svg width="22" height="11" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1.5" width="18" height="9" rx="2.5"/><rect x="3" y="3.5" width="12" height="5" rx="1" fill="currentColor"/><rect x="20.5" y="4" width="2" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+          <div class="app-head"><div class="app-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h11"/></svg></div><div class="title">Lume</div><div class="app-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M4 12h16"/></svg></div></div>
+          <div class="app-body">
+            <div class="orb-halo" style="margin:10px 0 2px"><div class="orb md floaty"></div></div>
+            <div class="greet" style="text-align:center"><div class="hi">Boa noite, <span class="accent">Marcos</span></div><div class="sub">Em que posso ajudar hoje?</div></div>
+            <div class="sugs">
+              <div class="sug"><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg></div><b>Escrever e-mail</b><span>remarcar uma reunião</span></div>
+              <div class="sug"><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.4-7-11a7 7 0 0 1 14 0c0 5.6-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg></div><b>Planejar viagem</b><span>3 dias em Lisboa</span></div>
+              <div class="sug"><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0-4 10.5V17h8v-3.5A6 6 0 0 0 12 3z"/><path d="M9 21h6"/></svg></div><b>Explicar ideia</b><span>quântica para iniciantes</span></div>
+              <div class="sug"><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13 5l-2 14"/></svg></div><b>Revisar código</b><span>o bug na função Python</span></div>
+            </div>
+          </div>
+          <div class="app-foot"><div class="inputbar"><span class="mini"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span><span class="ph">Pergunte qualquer coisa à Lume…</span><span class="mini"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4"/></svg></span><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg></span></div><div class="foot-note">A Lume pode errar. Confira informações importantes.</div></div>
+        </div></div></div>
+        <div class="cap"><div class="n">03 · Estado inicial</div><h3>Início / Nova conversa</h3><p>Saudação, atalhos e a caixa de texto sempre à mão.</p></div>
+      </div>
+
+      <!-- 4. CONVERSATION with code -->
+      <div class="screen-card">
+        <div class="phone"><div class="phone-frame"><div class="screen">
+          <div class="island"></div>
+          <div class="statusbar"><span>9:41</span><span class="sig"><svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg><svg width="22" height="11" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1.5" width="18" height="9" rx="2.5"/><rect x="3" y="3.5" width="12" height="5" rx="1" fill="currentColor"/><rect x="20.5" y="4" width="2" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+          <div class="app-head"><div class="app-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div><div class="title" style="display:flex;align-items:center;gap:8px"><span class="orb xs"></span>Função de primos</div><div class="app-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg></div></div>
+          <div class="chat">
+            <div class="msg user"><div class="bubble">escreve uma função em python que verifica se um número é primo</div></div>
+            <div class="msg ai"><div class="orb sm"></div><div><div class="ai-name">Lume</div>
+              <div class="bubble"><p>Claro! Aqui vai uma versão eficiente que testa divisores só até a raiz quadrada:</p>
+                <div class="codeblk"><div class="cbar"><span>python</span><span style="display:flex;gap:5px;align-items:center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Copiar</span></div>
+                <pre><span class="tok-k">def</span> <span class="tok-f">eh_primo</span>(n):
+    <span class="tok-k">if</span> n &lt; <span class="tok-n">2</span>:
+        <span class="tok-k">return</span> <span class="tok-n">False</span>
+    <span class="tok-k">for</span> i <span class="tok-k">in</span> <span class="tok-f">range</span>(<span class="tok-n">2</span>, <span class="tok-f">int</span>(n**<span class="tok-n">0.5</span>)+<span class="tok-n">1</span>):
+        <span class="tok-k">if</span> n % i == <span class="tok-n">0</span>:
+            <span class="tok-k">return</span> <span class="tok-n">False</span>
+    <span class="tok-k">return</span> <span class="tok-n">True</span></pre></div>
+                <p style="margin-top:8px">Quer que eu adicione testes ou explique a lógica?</p></div>
+              <div class="msg-actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v4h4"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v11M7 10l4-7a2 2 0 0 1 2 1v4h5a2 2 0 0 1 2 2l-2 8a1 1 0 0 1-1 1H7"/></svg></div>
+            </div></div>
+          </div>
+          <div class="app-foot"><div class="inputbar"><span class="mini"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span><span class="ph">Continue…</span><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg></span></div></div>
+        </div></div></div>
+        <div class="cap"><div class="n">04 · Diálogo</div><h3>Conversa</h3><p>Bolhas, blocos de código, e ações rápidas em cada resposta.</p></div>
+      </div>
+
+      <!-- 5. DRAWER -->
+      <div class="screen-card">
+        <div class="phone"><div class="phone-frame"><div class="screen drawer-scr">
+          <div class="island"></div>
+          <!-- background hint of chat -->
+          <div class="statusbar"><span>9:41</span><span class="sig"><svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg><svg width="22" height="11" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1.5" width="18" height="9" rx="2.5"/><rect x="3" y="3.5" width="12" height="5" rx="1" fill="currentColor"/><rect x="20.5" y="4" width="2" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+          <div class="scrim"></div>
+          <div class="drawer">
+            <div class="dtop">
+              <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>Buscar conversas</div>
+              <div class="newchat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>Nova conversa</div>
+            </div>
+            <div class="dlist">
+              <div class="conv pin"><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17v5M9 3h6l-1 8 4 2H6l4-2z"/></svg><span>Ideias para o TCC</span></div>
+              <div class="dgroup">Hoje</div>
+              <div class="conv active"><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Função de números primos</span></div>
+              <div class="conv"><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>O que é um buraco negro</span></div>
+              <div class="dgroup">Ontem</div>
+              <div class="conv"><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Roteiro de viagem — Lisboa</span></div>
+              <div class="conv"><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Receita de pão de fermentação</span></div>
+              <div class="dgroup">7 dias anteriores</div>
+              <div class="conv"><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Traduzir contrato EN→PT</span></div>
+            </div>
+            <div class="duser"><div class="av">M</div><div><div class="un">Marcos A.</div><div class="ue">Plano gratuito</div></div><span class="pro-badge">PRO</span></div>
+          </div>
+        </div></div></div>
+        <div class="cap"><div class="n">05 · Navegação</div><h3>Gaveta de conversas</h3><p>Histórico agrupado por data, fixados, busca e perfil.</p></div>
+      </div>
+
+      <!-- 6. SETTINGS (light theme variant) -->
+      <div class="screen-card">
+        <div class="phone"><div class="phone-frame"><div class="screen screen--light">
+          <div class="island"></div>
+          <div class="statusbar"><span>9:41</span><span class="sig"><svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg><svg width="22" height="11" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1.5" width="18" height="9" rx="2.5"/><rect x="3" y="3.5" width="12" height="5" rx="1" fill="currentColor"/><rect x="20.5" y="4" width="2" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+          <div class="app-head"><div class="app-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div><div class="title">Ajustes</div><div style="width:34px"></div></div>
+          <div class="settings">
+            <div class="set-prof"><div class="av">M</div><div><div class="un">Marcos Antônio</div><div class="ue">marcos@email.com</div></div><span class="chev"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
+            <div class="set-grp">Aparência</div>
+            <div class="set-card">
+              <div class="set-row"><div class="ri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.2 6.2 0 0 0 10.5 10.5z"/></svg></div><div class="rt">Tema</div><div class="segmented"><b>Claro</b><b class="on">Auto</b><b>Escuro</b></div></div>
+              <div class="set-row"><div class="ri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7V5h16v2M9 20h6M12 5v15"/></svg></div><div class="rt">Tamanho do texto</div><div class="rv">Médio</div></div>
+            </div>
+            <div class="set-grp">Assistente</div>
+            <div class="set-card">
+              <div class="set-row"><div class="ri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.2 4.6 5 .7-3.6 3.5.9 5L12 14.9 7.5 16.8l.9-5L4.8 8.3l5-.7z"/></svg></div><div class="rt">Modelo</div><div class="rv">Lume Pro <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></div></div>
+              <div class="set-row"><div class="ri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9 9 0 0 1 9 9M12 3v3M3 12a9 9 0 0 0 9 9 9 9 0 0 0 9-9"/></svg></div><div class="rt">Respostas por voz</div><div class="toggle"><i></i></div></div>
+              <div class="set-row"><div class="ri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4M12 3l7 4v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V7z"/></svg></div><div class="rt">Salvar histórico</div><div class="toggle off"><i></i></div></div>
+            </div>
+          </div>
+        </div></div></div>
+        <div class="cap"><div class="n">06 · Controle</div><h3>Ajustes / Perfil</h3><p>Aqui em <b>tema claro</b> — o mesmo sistema, invertido.</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ DESIGN SYSTEM ============ -->
+<section id="sistema" class="ds">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Fundações</span>
+      <h2>O sistema por trás do brilho</h2>
+      <p>Tudo nasce de poucas decisões: uma cor de brasa, três tipografias e componentes que se repetem com precisão.</p>
+    </div>
+
+    <div class="ds-grid">
+      <!-- palette -->
+      <div class="panel">
+        <h3>Paleta</h3>
+        <p class="ph-sub">Fundo profundo, esfera de brasa como único acento vivo.</p>
+        <div class="swatches">
+          <div class="sw ember"><div class="chip-c"></div><div class="meta"><b>Ember</b><code>gradiente</code></div></div>
+          <div class="sw amber"><div class="chip-c"></div><div class="meta"><b>Âmbar</b><code>#FFB65C</code></div></div>
+          <div class="sw rose"><div class="chip-c"></div><div class="meta"><b>Rosa</b><code>#FF6E8E</code></div></div>
+          <div class="sw pink"><div class="chip-c"></div><div class="meta"><b>Magenta</b><code>#F94E8B</code></div></div>
+          <div class="sw ink"><div class="chip-c"></div><div class="meta"><b>Tinta</b><code>#0B0A0F</code></div></div>
+          <div class="sw surf"><div class="chip-c"></div><div class="meta"><b>Superfície</b><code>#16141F</code></div></div>
+        </div>
+      </div>
+
+      <!-- typography -->
+      <div class="panel">
+        <h3>Tipografia</h3>
+        <p class="ph-sub">Display expressiva, corpo legível, mono para dados.</p>
+        <div class="type-row"><div class="tl">Display · Bricolage Grotesque</div><div class="tdisp">Acesa &amp; viva</div></div>
+        <div class="type-row"><div class="tl">Corpo · Hanken Grotesk</div><div class="tbody">Conversas fluem melhor quando o texto respira. A Lume usa uma sans calorosa e clara para tudo que se lê.</div></div>
+        <div class="type-row"><div class="tl">Mono · JetBrains Mono</div><div class="tmono">9:41 · v2.4 · lume_pro</div></div>
+      </div>
+
+      <!-- components -->
+      <div class="panel span2">
+        <h3>Componentes</h3>
+        <p class="ph-sub">Blocos reutilizáveis — mesma borda, mesmo raio, mesmo respiro.</p>
+        <div class="comp-wrap">
+          <div class="comp-box"><div class="cl">Botões</div><div class="demo-stack"><button class="d-btn-primary">Começar agora</button><button class="d-btn-ghost">Cancelar</button></div></div>
+          <div class="comp-box"><div class="cl">Chips</div><div class="demo-stack" style="flex-direction:row;flex-wrap:wrap"><span class="d-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M3 12h18"/></svg>Imagem</span><span class="d-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>Pesquisar</span></div></div>
+          <div class="comp-box"><div class="cl">Bolhas</div><div class="demo-stack" style="width:100%"><span class="d-bubble-u">e se eu cair dentro?</span><span class="d-bubble-a">Você seria esticado como um espaguete — os físicos chamam isso de espaguetificação.</span></div></div>
+          <div class="comp-box"><div class="cl">Esfera · Assinatura</div><div class="orb-sizes"><div class="orb sm"></div><div class="orb md"></div><div class="orb lg" style="width:76px;height:76px"></div></div></div>
+          <div class="comp-box"><div class="cl">Interruptor</div><div class="demo-stack" style="flex-direction:row;align-items:center;gap:16px"><div class="d-toggle"><i></i></div><span style="font-size:.85rem;color:var(--muted)">Respostas por voz</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="brand" style="margin-bottom:8px"><span class="dot"></span> Lume</div>
+      <p>Conceito de design de produto para inspiração. Independente — não afiliado à OpenAI, xAI ou a qualquer produto existente.</p>
+    </div>
+    <div class="foot-links">
+      <a href="#telas">Telas</a>
+      <a href="#sistema">Sistema</a>
+      <a href="#" id="themeToggle2">Tema</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  function current(){
+    var t=root.getAttribute('data-theme');
+    if(t) return t;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+  }
+  function toggle(){
+    var next=current()==='dark'?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem('lume-theme',next);}catch(e){}
+  }
+  try{var saved=localStorage.getItem('lume-theme'); if(saved) root.setAttribute('data-theme',saved);}catch(e){}
+  var b1=document.getElementById('themeToggle'); if(b1) b1.addEventListener('click',toggle);
+  var b2=document.getElementById('themeToggle2'); if(b2) b2.addEventListener('click',function(e){e.preventDefault();toggle();});
+})();
+</script>
