@@ -1,37 +1,18 @@
-import { Instrument_Serif, Archivo, JetBrains_Mono } from 'next/font/google';
+import { Bodoni_Moda, Inter } from 'next/font/google';
 
-/**
- * Three voices, and no more.
- *
- * Instrument Serif carries the statements — high contrast, slightly
- * archaic, the voice of something meant to outlast us. Archivo does the
- * structural work at tight tracking. JetBrains Mono handles every number
- * on the site: depths, epochs, coordinates, the clock.
- */
-
-export const instrument = Instrument_Serif({
+export const display = Bodoni_Moda({
   subsets: ['latin'],
-  weight: '400',
+  weight: ['400', '500', '600'],
   style: ['normal', 'italic'],
+  variable: '--font-display',
   display: 'swap',
-  variable: '--font-instrument',
-  preload: true,
 });
 
-export const archivo = Archivo({
+export const sans = Inter({
   subsets: ['latin'],
-  axes: ['wdth'],
+  weight: ['300', '400', '500'],
+  variable: '--font-sans',
   display: 'swap',
-  variable: '--font-archivo',
-  preload: true,
 });
 
-export const jetbrains = JetBrains_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  display: 'swap',
-  variable: '--font-mono-jb',
-  preload: false,
-});
-
-export const fontVars = `${instrument.variable} ${archivo.variable} ${jetbrains.variable}`;
+export const fontVars = `${display.variable} ${sans.variable}`;
