@@ -1,0 +1,1 @@
+{"kind": "models", "method": "GET", "path": "/models", "status": null, "latency_ms": 360.3, "error": "URLError: <urlopen error Tunnel connection failed: 403 Forbidden>", "headers": {}, "body": null, "parsed": null, "stream_lines": null, "ttft_ms": null, "attempt": 1, "policy_denied": true}

@@ -1,0 +1,47 @@
+{
+  "models_status": null,
+  "model_ids": [],
+  "target_listed": false,
+  "api_reachable": false,
+  "chat_ok": 0,
+  "chat_calls": 0,
+  "calls_total": 1,
+  "tokens_total": 0,
+  "per_category": {},
+  "latency_ms": {
+    "n": 0,
+    "median": null,
+    "p90": null,
+    "p95": null,
+    "mean": null,
+    "mean_ci95": [
+      null,
+      null
+    ]
+  },
+  "ttft_ms_median": null,
+  "tool_valid": {
+    "n": 0,
+    "ok": 0,
+    "rate": null
+  },
+  "consistency": {
+    "n_responses": 0,
+    "mean_pair_similarity": null,
+    "min_pair_similarity": null,
+    "distinct_prompt_token_counts": []
+  },
+  "signals": {
+    "model_echo_mismatch": [],
+    "missing_usage_rows": 0,
+    "system_fingerprints": [],
+    "stream_ok": null,
+    "request_ids_seen": 0,
+    "http_statuses": []
+  },
+  "claims": [],
+  "contradictions": [],
+  "run_dir": "/home/user/website/auditoria-codecraft/results/20261012T024252Z",
+  "stopped_by_budget": null,
+  "started_utc": "2026-10-12T02:42:52.989519+00:00"
+}

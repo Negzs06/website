@@ -1,0 +1,1 @@
+prompt_id,category,rep,status,latency_ms,ttft_ms,ok,detail,error,model_echo,system_fingerprint,finish_reason,prompt_tokens,completion_tokens,total_tokens,request_id
