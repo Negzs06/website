@@ -1,0 +1,30 @@
+[
+  {
+    "rep": 1,
+    "temperature": 0.0,
+    "status": 200,
+    "error": null,
+    "model_echo": "claude-mythos-preview"
+  },
+  {
+    "rep": 1,
+    "temperature": 0.7,
+    "status": 200,
+    "error": null,
+    "model_echo": "claude-mythos-preview"
+  },
+  {
+    "rep": 2,
+    "temperature": 0.0,
+    "status": 200,
+    "error": null,
+    "model_echo": "claude-mythos-preview"
+  },
+  {
+    "rep": 2,
+    "temperature": 0.7,
+    "status": 200,
+    "error": null,
+    "model_echo": "claude-mythos-preview"
+  }
+]

@@ -7,6 +7,8 @@ independente de proveniência disponível a partir da API.
 from __future__ import annotations
 
 import datetime as dt
+import glob
+import os
 
 from . import config
 
@@ -42,7 +44,10 @@ CONFIDENCE = {
     "Existência do identificador como modelo Anthropic": "Alta (documentação oficial, uma fonte primária aberta)",
     "Status 'Deprecated' de claude-mythos-preview": "Média-alta (página oficial via resumo de WebFetch; confirmar no original)",
     "Autorização do CodeCraft": "Não avaliável: nenhuma evidência obtida",
-    "Comportamento da API": "Não avaliável: API inacessível a partir do ambiente",
+    "Comportamento da API": "Média: uma execução completa, 20 chamadas de chat; sem referência para comparação",
+    "Contradição de temperature (categoria D)": "Média-alta: observada em 2 chamadas da execução principal e reproduzida "
+                                               "em 4 chamadas numa reprodução separada; depende de a alegação documental "
+                                               "se aplicar a este serviço",
 }
 
 
@@ -53,7 +58,9 @@ def classify(s):
                 f"GET /v1/models não retornou HTTP 200 (status={s.get('models_status')}). "
                 "Nenhuma inferência sobre o modelo servido é possível.")
     if s["contradictions"]:
-        return ("Inconsistência confirmada", "; ".join(s["contradictions"]))
+        return ("Inconsistência confirmada",
+                "; ".join(s["contradictions"]) + ". A contradição é com a documentação oficial; "
+                "não prova que o modelo servido seja outro.")
     if s["chat_ok"] == 0:
         return ("Inconclusivo", "Nenhuma chamada de chat retornou resultado verificável.")
     return ("Compatível, mas não verificado",
@@ -167,12 +174,19 @@ def build(s, run_dir, rows):
         w("- Nenhuma inconsistência reproduzível foi observada. Isso só vale para os dados coletados.")
     w("- Divergência documental: fontes de terceiros divergem sobre o preço e a presença do identificador "
       "na tabela oficial (ver seção 2).")
+    repro = sorted(glob.glob(os.path.join(config.RESULTS_DIR, "repro_temperature_*", "repro.json")))
+    for path in repro:
+        w(f"- Reprodução independente das chamadas de temperature: `{os.path.relpath(path, config.RESULTS_DIR)}`.")
     w("")
 
     w("## 7. Limitações metodológicas")
     w("")
-    w("- **Acesso bloqueado:** o host do serviço foi recusado pela política de rede do ambiente. Nenhuma chamada "
-      "autenticada foi feita, e a chave não foi usada.")
+    w("- **Chave de API:** lida somente de `CODECRAFT_API_KEY`, usada nas chamadas e nunca gravada. Headers de "
+      "autorização não são registrados e a chave é redigida em todos os arquivos. Ela foi colada em texto de "
+      "conversa, por isso deve ser rotacionada.")
+    w("- **Dados de API limitados:** uma execução completa e duas reproduções, com 1 a 3 repetições por prompt.")
+    w("- **Categoria B sem pontuação:** os testes de ambiguidade e consistência são observacionais ou não têm "
+      "verificador objetivo; a consistência é medida só por similaridade de texto.")
     w("- **Amostras pequenas:** 1 a 3 repetições por prompt. Não há base estatística para julgar identidade.")
     w("- **Sem referência:** nenhum modelo oficial foi executado com os mesmos prompts, então não há comparação.")
     w("- **Sem prova de proveniência:** headers, nomes de modelo e fingerprints são controlados pelo fornecedor.")
@@ -200,19 +214,19 @@ def build(s, run_dir, rows):
     w("|---|---|")
     for k, v in CONFIDENCE.items():
         w(f"| {k} | {v} |")
-    w(f"| Classificação final: {label} | {'Alta' if label == 'Inconclusivo' else 'Baixa a média'} |")
+    w(f"| Classificação final: {label} | {'Baixa, sem dados de API' if label == 'Inconclusivo' else 'Média: depende da alegação documental e da proveniência não verificada'} |")
     w("")
 
     w("## 10. Recomendações para verificações adicionais")
     w("")
-    w("1. Liberar `codecraftapi.com:443` na política de rede do ambiente (configurações de rede do ambiente de nuvem) "
-      "e reexecutar `python -m codecraft_audit.runner probe` antes de qualquer bateria.")
-    w("2. Solicitar ao CodeCraft documentação de roteamento, contrato de parceria ou certificado de autorização "
-      "da Anthropic, e verificar essas evidências diretamente com a Anthropic.")
-    w("3. Testar a alegação documental de temperature (categoria D) antes de tudo; é o teste de menor custo "
-      "com resultado previsto pela documentação oficial.")
-    w("4. Para comparação, obter credenciais autorizadas da API oficial da Anthropic e, se aplicável, de Qwen e "
+    w("1. Confirmar a alegação de temperature no original da documentação oficial (a análise usou resumo de WebFetch) "
+      "e verificar se ela vale para o identificador anunciado pelo CodeCraft.")
+    w("2. Pedir ao CodeCraft documentação de roteamento, contrato de parceria ou comprovação de autorização da "
+      "Anthropic, e verificar essas evidências diretamente com a Anthropic.")
+    w("3. Para comparação, obter credenciais autorizadas da API oficial da Anthropic e, se aplicável, de Qwen e "
       "DeepSeek, e executar a mesma bateria com o mesmo orçamento.")
+    w("4. Rever o teste de geração de testes (`A-testgen-slugify`): o modelo importou `slugify` como pacote "
+      "externo em vez de usar a função do módulo. Isso pode ser falha do modelo ou ambiguidade do prompt.")
     w("5. Rotacionar a chave CodeCraft, já que ela foi colada em texto de conversa durante esta auditoria.")
     w("")
     return "\n".join(out)

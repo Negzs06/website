@@ -1,13 +1,11 @@
 # Auditoria CodeCraft API: relatório
 
-Gerado em 2026-10-12 02:42 UTC. Modelo-alvo: `claude-mythos-preview`. Endpoint: `https://codecraftapi.com/v1`.
-Execução: `/home/user/website/auditoria-codecraft/results/20261012T024252Z`. A chave de API não aparece neste relatório.
+Gerado em 2026-10-12 02:58 UTC. Modelo-alvo: `claude-mythos-preview`. Endpoint: `https://codecraftapi.com/v1`.
+Execução: `results/20261012T025321Z`. A chave de API não aparece neste relatório.
 
 ## 1. Resumo executivo
 
-**Conclusão: Inconclusivo.** GET /v1/models não retornou HTTP 200 (status=None). Nenhuma inferência sobre o modelo servido é possível.
-
-A auditoria de API **não foi executada**. O ambiente de execução bloqueou o host `codecraftapi.com:443` (HTTP 403 no CONNECT, política de egress). Os resultados de API abaixo estão vazios por esse motivo, não por ausência de problema no serviço. Esta conclusão é exclusivamente documental e não substitui a bateria.
+**Conclusão: Inconsistência confirmada.** alegação documental contrariada em D-claim-temp-0.0: status=200 esperado=400; alegação documental contrariada em D-claim-temp-0.7: status=200 esperado=400. A contradição é com a documentação oficial; não prova que o modelo servido seja outro.
 
 ## 2. Evidências documentais
 
@@ -28,18 +26,27 @@ A auditoria de API **não foi executada**. O ambiente de execução bloqueou o h
 
 ## 3. Resultados dos testes de API
 
-- GET /v1/models: status=n/d; modelos listados=0; alvo listado=False.
-- Chamadas de chat registradas: 0; com sucesso verificado: 0.
-- Requisições totais (incluindo retentativas): 1; tokens somados: 0.
-- Códigos HTTP observados: nenhum.
-- Streaming (SSE) funcionou: n/d.
-- Chamada de ferramenta válida: 0/0.
+- GET /v1/models: status=200; modelos listados=33; alvo listado=True.
+- Chamadas de chat registradas: 20; com sucesso verificado: 13.
+- Requisições totais (incluindo retentativas): 21; tokens somados: 18041.
+- Códigos HTTP observados: [200, 404].
+- Streaming (SSE) funcionou: True.
+- Chamada de ferramenta válida: 1/1.
 - Identificadores de requisição recebidos: 0.
 - Fingerprints recebidos: nenhum (controlados pelo fornecedor; não são prova).
 
 ## 4. Resultados dos benchmarks
 
-Nenhum benchmark foi executado com dados da API.
+| Categoria | n | acertos | taxa | IC 95% (Wilson) |
+|---|---|---|---|---|
+| A | 8 | 7 | 0.875 | [0.5291, 0.9776] |
+| B | 0 | 0 | n/d | n/d |
+| C | 5 | 5 | 1.0 | [0.5655, 1.0] |
+| D | 3 | 1 | 0.3333 | [0.0615, 0.7923] |
+
+- Latência (ms): mediana=12733.5, p90=14170.5, p95=14453.5, média=10760.1, IC95 bootstrap da média=[8772.7, 12429.1].
+- Consistência (mutex, temperatura 0): 3 respostas; similaridade média entre pares=0.9009; contagens de tokens de prompt distintas=[297].
+- Nota: com 1 a 3 repetições por prompt, os intervalos são largos e não permitem diferenciar modelos.
 
 **Comparação com modelos de referência (categoria D do plano):** não executada. Não há credenciais autorizadas para Claude oficial, Qwen ou DeepSeek neste ambiente.
 
@@ -50,12 +57,16 @@ Nenhum benchmark foi executado com dados da API.
 
 ## 6. Inconsistências identificadas
 
-- Nenhuma inconsistência reproduzível foi observada. Isso só vale para os dados coletados.
+- alegação documental contrariada em D-claim-temp-0.0: status=200 esperado=400
+- alegação documental contrariada em D-claim-temp-0.7: status=200 esperado=400
 - Divergência documental: fontes de terceiros divergem sobre o preço e a presença do identificador na tabela oficial (ver seção 2).
+- Reprodução independente das chamadas de temperature: `repro_temperature_20261012T025822Z/repro.json`.
 
 ## 7. Limitações metodológicas
 
-- **Acesso bloqueado:** o host do serviço foi recusado pela política de rede do ambiente. Nenhuma chamada autenticada foi feita, e a chave não foi usada.
+- **Chave de API:** lida somente de `CODECRAFT_API_KEY`, usada nas chamadas e nunca gravada. Headers de autorização não são registrados e a chave é redigida em todos os arquivos. Ela foi colada em texto de conversa, por isso deve ser rotacionada.
+- **Dados de API limitados:** uma execução completa e duas reproduções, com 1 a 3 repetições por prompt.
+- **Categoria B sem pontuação:** os testes de ambiguidade e consistência são observacionais ou não têm verificador objetivo; a consistência é medida só por similaridade de texto.
 - **Amostras pequenas:** 1 a 3 repetições por prompt. Não há base estatística para julgar identidade.
 - **Sem referência:** nenhum modelo oficial foi executado com os mesmos prompts, então não há comparação.
 - **Sem prova de proveniência:** headers, nomes de modelo e fingerprints são controlados pelo fornecedor.
@@ -76,13 +87,14 @@ Nenhum benchmark foi executado com dados da API.
 | Existência do identificador como modelo Anthropic | Alta (documentação oficial, uma fonte primária aberta) |
 | Status 'Deprecated' de claude-mythos-preview | Média-alta (página oficial via resumo de WebFetch; confirmar no original) |
 | Autorização do CodeCraft | Não avaliável: nenhuma evidência obtida |
-| Comportamento da API | Não avaliável: API inacessível a partir do ambiente |
-| Classificação final: Inconclusivo | Alta |
+| Comportamento da API | Média: uma execução completa, 20 chamadas de chat; sem referência para comparação |
+| Contradição de temperature (categoria D) | Média-alta: observada em 2 chamadas da execução principal e reproduzida em 4 chamadas numa reprodução separada; depende de a alegação documental se aplicar a este serviço |
+| Classificação final: Inconsistência confirmada | Média: depende da alegação documental e da proveniência não verificada |
 
 ## 10. Recomendações para verificações adicionais
 
-1. Liberar `codecraftapi.com:443` na política de rede do ambiente (configurações de rede do ambiente de nuvem) e reexecutar `python -m codecraft_audit.runner probe` antes de qualquer bateria.
-2. Solicitar ao CodeCraft documentação de roteamento, contrato de parceria ou certificado de autorização da Anthropic, e verificar essas evidências diretamente com a Anthropic.
-3. Testar a alegação documental de temperature (categoria D) antes de tudo; é o teste de menor custo com resultado previsto pela documentação oficial.
-4. Para comparação, obter credenciais autorizadas da API oficial da Anthropic e, se aplicável, de Qwen e DeepSeek, e executar a mesma bateria com o mesmo orçamento.
+1. Confirmar a alegação de temperature no original da documentação oficial (a análise usou resumo de WebFetch) e verificar se ela vale para o identificador anunciado pelo CodeCraft.
+2. Pedir ao CodeCraft documentação de roteamento, contrato de parceria ou comprovação de autorização da Anthropic, e verificar essas evidências diretamente com a Anthropic.
+3. Para comparação, obter credenciais autorizadas da API oficial da Anthropic e, se aplicável, de Qwen e DeepSeek, e executar a mesma bateria com o mesmo orçamento.
+4. Rever o teste de geração de testes (`A-testgen-slugify`): o modelo importou `slugify` como pacote externo em vez de usar a função do módulo. Isso pode ser falha do modelo ou ambiguidade do prompt.
 5. Rotacionar a chave CodeCraft, já que ela foi colada em texto de conversa durante esta auditoria.

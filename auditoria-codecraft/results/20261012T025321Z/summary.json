@@ -1,0 +1,145 @@
+{
+  "models_status": 200,
+  "model_ids": [
+    "muse-spark-1.1",
+    "gemma-2-2b",
+    "gpt-5.6-sol",
+    "claude-opus-5",
+    "claude-fable-5",
+    "claude-mythos-preview",
+    "kimi-k3",
+    "glm-5.3",
+    "deepseek-v4-pro-0813",
+    "qwen3.8-max",
+    "gpt-5.6-terra",
+    "claude-opus-4.8",
+    "gemini-3.7-flash",
+    "claude-sonnet-5",
+    "gpt-5.5",
+    "grok-4.5",
+    "deepseek-v4-flash-0731",
+    "grok-4.6",
+    "seed-2.1-pro",
+    "glm-5.2",
+    "qwen3.8-27b",
+    "gpt-5.6-luna",
+    "qwen3.7-max",
+    "claude-opus-4.6",
+    "gpt-5.5-pro",
+    "claude-opus-4.7",
+    "gemini-3.6-flash",
+    "kimi-k2.6",
+    "seed-2.1-turbo",
+    "gemini-3.1-pro",
+    "deepseek-v4-pro-max",
+    "claude-fable-5.1",
+    "claude-opus-5.5"
+  ],
+  "target_listed": true,
+  "api_reachable": true,
+  "chat_ok": 13,
+  "chat_calls": 20,
+  "calls_total": 21,
+  "tokens_total": 18041,
+  "per_category": {
+    "A": {
+      "n": 8,
+      "ok": 7,
+      "rate": 0.875,
+      "ci95": [
+        0.5291,
+        0.9776
+      ]
+    },
+    "B": {
+      "n": 0,
+      "ok": 0,
+      "rate": null,
+      "ci95": [
+        null,
+        null
+      ]
+    },
+    "C": {
+      "n": 5,
+      "ok": 5,
+      "rate": 1.0,
+      "ci95": [
+        0.5655,
+        1.0
+      ]
+    },
+    "D": {
+      "n": 3,
+      "ok": 1,
+      "rate": 0.3333,
+      "ci95": [
+        0.0615,
+        0.7923
+      ]
+    }
+  },
+  "latency_ms": {
+    "n": 20,
+    "median": 12733.5,
+    "p90": 14170.5,
+    "p95": 14453.5,
+    "mean": 10760.1,
+    "mean_ci95": [
+      8772.7,
+      12429.1
+    ]
+  },
+  "ttft_ms_median": 3836.9,
+  "tool_valid": {
+    "n": 1,
+    "ok": 1,
+    "rate": 1.0
+  },
+  "consistency": {
+    "n_responses": 3,
+    "mean_pair_similarity": 0.9009,
+    "min_pair_similarity": 0.8513,
+    "distinct_prompt_token_counts": [
+      297
+    ]
+  },
+  "signals": {
+    "model_echo_mismatch": [],
+    "missing_usage_rows": 0,
+    "system_fingerprints": [],
+    "stream_ok": true,
+    "request_ids_seen": 0,
+    "http_statuses": [
+      200,
+      404
+    ]
+  },
+  "claims": [
+    {
+      "prompt_id": "D-claim-temp-0.0",
+      "status": 200,
+      "ok": false,
+      "detail": "status=200 esperado=400"
+    },
+    {
+      "prompt_id": "D-claim-temp-0.7",
+      "status": 200,
+      "ok": false,
+      "detail": "status=200 esperado=400"
+    },
+    {
+      "prompt_id": "D-claim-temp-1.0",
+      "status": 200,
+      "ok": true,
+      "detail": "status=200 esperado=200"
+    }
+  ],
+  "contradictions": [
+    "alegação documental contrariada em D-claim-temp-0.0: status=200 esperado=400",
+    "alegação documental contrariada em D-claim-temp-0.7: status=200 esperado=400"
+  ],
+  "run_dir": "/home/user/website/auditoria-codecraft/results/20261012T025321Z",
+  "stopped_by_budget": null,
+  "started_utc": "2026-10-12T02:56:57.320040+00:00"
+}
