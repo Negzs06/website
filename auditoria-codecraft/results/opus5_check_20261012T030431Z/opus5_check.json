@@ -1,0 +1,64 @@
+{
+  "models_status": 200,
+  "opus_ids": [
+    "claude-opus-5",
+    "claude-opus-4.8",
+    "claude-opus-4.6",
+    "claude-opus-4.7",
+    "claude-opus-5.5"
+  ],
+  "calls": [
+    {
+      "probe": "identity-independent logic",
+      "status": 200,
+      "ok": true,
+      "detail": "esperado=401 obtido=401",
+      "model_echo": "claude-opus-5",
+      "usage": {
+        "prompt_tokens": 329,
+        "completion_tokens": 920,
+        "total_tokens": 1249
+      },
+      "finish": "stop",
+      "error": null
+    },
+    {
+      "probe": "temp 0.7 (doc: >=4.7 rejects non-default)",
+      "status": 200,
+      "ok": false,
+      "detail": "status=200 esperado=400",
+      "model_echo": "claude-opus-5",
+      "usage": {
+        "prompt_tokens": 296,
+        "completion_tokens": 413,
+        "total_tokens": 709
+      },
+      "finish": "stop",
+      "error": null
+    },
+    {
+      "probe": "temp 1.0 (default, should be accepted)",
+      "status": 200,
+      "ok": true,
+      "detail": "status=200 esperado=200",
+      "model_echo": "claude-opus-5",
+      "usage": {
+        "prompt_tokens": 296,
+        "completion_tokens": 208,
+        "total_tokens": 504
+      },
+      "finish": "stop",
+      "error": null
+    },
+    {
+      "probe": "unknown model error shape",
+      "status": 404,
+      "ok": true,
+      "detail": "status=404 corpo_com_error=True",
+      "model_echo": null,
+      "usage": null,
+      "finish": null,
+      "error": "HTTP 404"
+    }
+  ]
+}
