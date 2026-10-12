@@ -1,0 +1,1905 @@
+{
+  "kind": "models",
+  "method": "GET",
+  "path": "/models",
+  "status": 200,
+  "latency_ms": 570.3,
+  "error": null,
+  "headers": {
+    "Date": "Mon, 12 Oct 2026 02:53:21 GMT",
+    "Server": "cloudflare",
+    "X-RateLimit-Limit": "300",
+    "X-RateLimit-Remaining": "299",
+    "X-RateLimit-Reset": "1791773640",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-Content-Type-Options": "nosniff",
+    "X-XSS-Protection": "1; mode=block",
+    "CF-RAY": "a492d04eb99af39d-IAD"
+  },
+  "body": "{\"object\":\"list\",\"data\":[{\"id\":\"muse-spark-1.1\",\"object\":\"model\",\"created\":1787211373,\"owned_by\":\"CodeCraft API\",\"name\":\"Muse Spark 1.1\",\"description\":\"Meta Muse Spark series. Fast and capable with strong reasoning scores.\",\"context_length\":1000000,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.000001817\",\"completion\":\"0.000001817\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.001817,\"output_per_1k\":0.001817},\"top_provider\":{\"context_length\":1000000,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1000000,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\"]},{\"id\":\"gemma-2-2b\",\"object\":\"model\",\"created\":1787219328,\"owned_by\":\"CodeCraft API\",\"name\":\"Gemma 2 2B\",\"description\":\"Lightweight open model by Google. Fast and efficient for everyday tasks.\",\"context_length\":8192,\"architecture\":{\"modality\":\"text->text\",\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.000000115\",\"completion\":\"0.00000023\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.000115,\"output_per_1k\":0.00023},\"top_provider\":{\"context_length\":8192,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"max_tokens\",\"presence_penalty\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"top_p\"],\"type\":\"chat\",\"context_window\":8192,\"capabilities\":[\"streaming\",\"json_mode\"]},{\"id\":\"gpt-5.6-sol\",\"object\":\"model\",\"created\":1787221834,\"owned_by\":\"CodeCraft API\",\"name\":\"GPT-5.6 Sol\",\"description\":\"OpenAI flagship model. Top-tier reasoning, coding, and agentic capability.\",\"context_length\":1050000,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.000008947\",\"completion\":\"0.000008947\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.008947,\"output_per_1k\":0.008947},\"top_provider\":{\"context_length\":1050000,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1050000,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\"]},{\"id\":\"claude-opus-5\",\"object\":\"model\",\"created\":1787221858,\"owned_by\":\"CodeCraft API\",\"name\":\"Claude Opus 5\",\"description\":\"Anthropic's most capable model. Exceptional reasoning and agentic performance.\",\"context_length\":1000000,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.000008303\",\"completion\":\"0.000008303\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.008303,\"output_per_1k\":0.008303},\"top_provider\":{\"context_length\":1000000,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1000000,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\"]},{\"id\":\"claude-fable-5\",\"object\":\"model\",\"created\":1787221888,\"owned_by\":\"CodeCraft API\",\"name\":\"Claude Fable 5\",\"description\":\"Anthropic premium model. Outstanding coding and reasoning with top Code Arena score.\",\"context_length\":1000000,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.000016606\",\"completion\":\"0.000016606\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.016606,\"output_per_1k\":0.016606},\"top_provider\":{\"context_length\":1000000,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1000000,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\"]},{\"id\":\"claude-mythos-preview\",\"object\":\"model\",\"created\":1787221915,\"owned_by\":\"CodeCraft API\",\"name\":\"Claude Mythos Preview\",\"description\":\"Anthropic next-gen preview model. Cutting-edge reasoning, not yet generally released.\",\"context_length\":1000000,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.000008303\",\"completion\":\"0.000008303\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.008303,\"output_per_1k\":0.008303},\"top_provider\":{\"context_length\":1000000,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1000000,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\"]},{\"id\":\"kimi-k3\",\"object\":\"model\",\"created\":1787221925,\"owned_by\":\"CodeCraft API\",\"name\":\"Kimi K3\",\"description\":\"Moonshot AI open-source flagship. Strong reasoning and coding, 2.8T params.\",\"context_length\":1000000,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.0000049795\",\"completion\":\"0.0000049795\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.0049795,\"output_per_1k\":0.0049795},\"top_provider\":{\"context_length\":1000000,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1000000,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\",\"web_search\"]},{\"id\":\"glm-5.3\",\"object\":\"model\",\"created\":1787221936,\"owned_by\":\"CodeCraft API\",\"name\":\"GLM-5.3\",\"description\":\"Zhipu AI latest model. Strong reasoning and agentic capability, 753B params.\",\"context_length\":1000000,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.000001357\",\"completion\":\"0.000001357\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.001357,\"output_per_1k\":0.001357},\"top_provider\":{\"context_length\":1000000,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1000000,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\",\"web_search\"]},{\"id\":\"deepseek-v4-pro-0813\",\"object\":\"model\",\"created\":1787221948,\"owned_by\":\"CodeCraft API\",\"name\":\"DeepSeek-V4-Pro-0813\",\"description\":\"DeepSeek open-source pro model. Excellent reasoning and coding, 1.6T params.\",\"context_length\":1048576,\"architecture\":{\"modality\":\"text->text\",\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.000000552\",\"completion\":\"0.000000552\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.000552,\"output_per_1k\":0.000552},\"top_provider\":{\"context_length\":1048576,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1048576,\"capabilities\":[\"reasoning\",\"tools\",\"streaming\",\"json_mode\"]},{\"id\":\"qwen3.8-max\",\"object\":\"model\",\"created\":1787221958,\"owned_by\":\"CodeCraft API\",\"name\":\"Qwen3.8 Max\",\"description\":\"Alibaba Qwen flagship open model. Strong all-round capability, 2.4T params.\",\"context_length\":1000000,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.0000017595\",\"completion\":\"0.0000017595\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.0017595,\"output_per_1k\":0.0017595},\"top_provider\":{\"context_length\":1000000,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1000000,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\",\"web_search\"]},{\"id\":\"gpt-5.6-terra\",\"object\":\"model\",\"created\":1787221981,\"owned_by\":\"CodeCraft API\",\"name\":\"GPT-5.6 Terra\",\"description\":\"OpenAI high-end model. Strong reasoning and coding at a mid price point.\",\"context_length\":1050000,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.0000035765\",\"completion\":\"0.0000035765\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.0035765,\"output_per_1k\":0.0035765},\"top_provider\":{\"context_length\":1050000,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1050000,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\"]},{\"id\":\"claude-opus-4.8\",\"object\":\"model\",\"created\":1787221991,\"owned_by\":\"CodeCraft API\",\"name\":\"Claude Opus 4.8\",\"description\":\"Anthropic Opus-class model. Reliable reasoning and coding performance.\",\"context_length\":1000000,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.000008303\",\"completion\":\"0.000008303\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.008303,\"output_per_1k\":0.008303},\"top_provider\":{\"context_length\":1000000,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1000000,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\"]},{\"id\":\"gemini-3.7-flash\",\"object\":\"model\",\"created\":1787222013,\"owned_by\":\"CodeCraft API\",\"name\":\"Gemini 3.7 Flash\",\"description\":\"Google latest Flash model. Very fast with strong reasoning, 479c\\/s.\",\"context_length\":1048576,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.000001242\",\"completion\":\"0.000001242\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.001242,\"output_per_1k\":0.001242},\"top_provider\":{\"context_length\":1048576,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1048576,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\",\"web_search\"]},{\"id\":\"claude-sonnet-5\",\"object\":\"model\",\"created\":1787222023,\"owned_by\":\"CodeCraft API\",\"name\":\"Claude Sonnet 5\",\"description\":\"Anthropic balanced model. Great coding and reasoning at a lower cost.\",\"context_length\":1000000,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.0000033235\",\"completion\":\"0.0000033235\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.0033235,\"output_per_1k\":0.0033235},\"top_provider\":{\"context_length\":1000000,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1000000,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\"]},{\"id\":\"gpt-5.5\",\"object\":\"model\",\"created\":1787222034,\"owned_by\":\"CodeCraft API\",\"name\":\"GPT-5.5\",\"description\":\"OpenAI capable model. Solid reasoning and coding performance.\",\"context_length\":1050000,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.000008947\",\"completion\":\"0.000008947\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.008947,\"output_per_1k\":0.008947},\"top_provider\":{\"context_length\":1050000,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1050000,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\"]},{\"id\":\"grok-4.5\",\"object\":\"model\",\"created\":1787222045,\"owned_by\":\"CodeCraft API\",\"name\":\"Grok 4.5\",\"description\":\"xAI model. Strong reasoning and agentic capability.\",\"context_length\":500000,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.000002806\",\"completion\":\"0.000002806\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.002806,\"output_per_1k\":0.002806},\"top_provider\":{\"context_length\":500000,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":500000,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\",\"web_search\"]},{\"id\":\"deepseek-v4-flash-0731\",\"object\":\"model\",\"created\":1787222059,\"owned_by\":\"CodeCraft API\",\"name\":\"DeepSeek-V4-Flash-0731\",\"description\":\"DeepSeek fast open model. Very affordable with solid reasoning, 304B params.\",\"context_length\":1048576,\"architecture\":{\"modality\":\"text->text\",\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.000000115\",\"completion\":\"0.000000115\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.000115,\"output_per_1k\":0.000115},\"top_provider\":{\"context_length\":1048576,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1048576,\"capabilities\":[\"reasoning\",\"tools\",\"streaming\",\"json_mode\"]},{\"id\":\"grok-4.6\",\"object\":\"model\",\"created\":1787222071,\"owned_by\":\"CodeCraft API\",\"name\":\"Grok 4.6\",\"description\":\"xAI latest model. Improved reasoning and coding over 4.5.\",\"context_length\":500000,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.000002806\",\"completion\":\"0.000002806\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.002806,\"output_per_1k\":0.002806},\"top_provider\":{\"context_length\":500000,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":500000,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\",\"web_search\"]},{\"id\":\"seed-2.1-pro\",\"object\":\"model\",\"created\":1787222081,\"owned_by\":\"CodeCraft API\",\"name\":\"Seed 2.1 Pro\",\"description\":\"ByteDance Seed series pro model. Strong reasoning and coding.\",\"context_length\":262144,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.00000115\",\"completion\":\"0.00000115\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.00115,\"output_per_1k\":0.00115},\"top_provider\":{\"context_length\":262144,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":262144,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\"]},{\"id\":\"glm-5.2\",\"object\":\"model\",\"created\":1787222105,\"owned_by\":\"CodeCraft API\",\"name\":\"GLM-5.2\",\"description\":\"Zhipu AI open model. Good reasoning and coding, 753B params.\",\"context_length\":1000000,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.000001357\",\"completion\":\"0.000001357\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.001357,\"output_per_1k\":0.001357},\"top_provider\":{\"context_length\":1000000,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1000000,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\",\"web_search\"]},{\"id\":\"qwen3.8-27b\",\"object\":\"model\",\"created\":1787222117,\"owned_by\":\"CodeCraft API\",\"name\":\"Qwen3.8-27B\",\"description\":\"Alibaba Qwen compact open model. Efficient 27.8B params with solid capability.\",\"context_length\":262144,\"architecture\":{\"modality\":\"text->text\",\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.000000575\",\"completion\":\"0.000000575\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.000575,\"output_per_1k\":0.000575},\"top_provider\":{\"context_length\":262144,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":262144,\"capabilities\":[\"reasoning\",\"tools\",\"streaming\",\"json_mode\"]},{\"id\":\"gpt-5.6-luna\",\"object\":\"model\",\"created\":1787222128,\"owned_by\":\"CodeCraft API\",\"name\":\"GPT-5.6 Luna\",\"description\":\"OpenAI efficient model. Great value with strong reasoning, 290c\\/s speed.\",\"context_length\":1050000,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.0000003565\",\"completion\":\"0.0000003565\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.0003565,\"output_per_1k\":0.0003565},\"top_provider\":{\"context_length\":1050000,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1050000,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\"]},{\"id\":\"qwen3.7-max\",\"object\":\"model\",\"created\":1787222146,\"owned_by\":\"CodeCraft API\",\"name\":\"Qwen3.7 Max\",\"description\":\"Alibaba Qwen pro model. Strong reasoning and coding performance.\",\"context_length\":1000000,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.0000017595\",\"completion\":\"0.0000017595\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.0017595,\"output_per_1k\":0.0017595},\"top_provider\":{\"context_length\":1000000,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1000000,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\",\"web_search\"]},{\"id\":\"claude-opus-4.6\",\"object\":\"model\",\"created\":1787222165,\"owned_by\":\"CodeCraft API\",\"name\":\"Claude Opus 4.6\",\"description\":\"Anthropic Opus-class model. Reliable reasoning and agentic performance.\",\"context_length\":1000000,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.000008303\",\"completion\":\"0.000008303\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.008303,\"output_per_1k\":0.008303},\"top_provider\":{\"context_length\":1000000,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1000000,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\"]},{\"id\":\"gpt-5.5-pro\",\"object\":\"model\",\"created\":1787222177,\"owned_by\":\"CodeCraft API\",\"name\":\"GPT-5.5 Pro\",\"description\":\"OpenAI pro-tier model. Enhanced reasoning and coding over base 5.5.\",\"context_length\":1050000,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.000008947\",\"completion\":\"0.000008947\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.008947,\"output_per_1k\":0.008947},\"top_provider\":{\"context_length\":1050000,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1050000,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\"]},{\"id\":\"claude-opus-4.7\",\"object\":\"model\",\"created\":1787222188,\"owned_by\":\"CodeCraft API\",\"name\":\"Claude Opus 4.7\",\"description\":\"Anthropic Opus-class model. Strong coding and reasoning, high Code Arena score.\",\"context_length\":1000000,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.000008303\",\"completion\":\"0.000008303\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.008303,\"output_per_1k\":0.008303},\"top_provider\":{\"context_length\":1000000,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1000000,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\"]},{\"id\":\"gemini-3.6-flash\",\"object\":\"model\",\"created\":1787222199,\"owned_by\":\"CodeCraft API\",\"name\":\"Gemini 3.6 Flash\",\"description\":\"Google fast model. Very quick responses with good reasoning, 364c\\/s.\",\"context_length\":1048576,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.0000024955\",\"completion\":\"0.0000024955\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.0024955,\"output_per_1k\":0.0024955},\"top_provider\":{\"context_length\":1048576,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1048576,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\",\"web_search\"]},{\"id\":\"kimi-k2.6\",\"object\":\"model\",\"created\":1787222211,\"owned_by\":\"CodeCraft API\",\"name\":\"Kimi K2.6\",\"description\":\"Moonshot AI open model. Strong reasoning and coding, 1.0T params.\",\"context_length\":1000000,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.000001219\",\"completion\":\"0.000001219\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.001219,\"output_per_1k\":0.001219},\"top_provider\":{\"context_length\":1000000,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1000000,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\",\"web_search\"]},{\"id\":\"seed-2.1-turbo\",\"object\":\"model\",\"created\":1787222223,\"owned_by\":\"CodeCraft API\",\"name\":\"Seed 2.1 Turbo\",\"description\":\"ByteDance Seed turbo model. Fast with solid reasoning and coding.\",\"context_length\":262144,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.00000092\",\"completion\":\"0.00000092\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.00092,\"output_per_1k\":0.00092},\"top_provider\":{\"context_length\":262144,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":262144,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\"]},{\"id\":\"gemini-3.1-pro\",\"object\":\"model\",\"created\":1787222234,\"owned_by\":\"CodeCraft API\",\"name\":\"Gemini 3.1 Pro\",\"description\":\"Google pro model. Strong reasoning and coding with high Code Arena score.\",\"context_length\":1048576,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.0000044735\",\"completion\":\"0.0000044735\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.0044735,\"output_per_1k\":0.0044735},\"top_provider\":{\"context_length\":1048576,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1048576,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\",\"web_search\"]},{\"id\":\"deepseek-v4-pro-max\",\"object\":\"model\",\"created\":1787222247,\"owned_by\":\"CodeCraft API\",\"name\":\"DeepSeek-V4-Pro-Max\",\"description\":\"DeepSeek top open model. Maximum capability with 1.6T params.\",\"context_length\":1048576,\"architecture\":{\"modality\":\"text->text\",\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.000002047\",\"completion\":\"0.000002047\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.002047,\"output_per_1k\":0.002047},\"top_provider\":{\"context_length\":1048576,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1048576,\"capabilities\":[\"reasoning\",\"tools\",\"streaming\",\"json_mode\"]},{\"id\":\"claude-fable-5.1\",\"object\":\"model\",\"created\":1790238570,\"owned_by\":\"CodeCraft API\",\"name\":\"Claude Fable 5.1\",\"description\":\"Anthropic premium model. Outstanding coding and reasoning with top Code Arena score.\",\"context_length\":1000000,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.000016606\",\"completion\":\"0.000016606\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.016606,\"output_per_1k\":0.016606},\"top_provider\":{\"context_length\":1000000,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1000000,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\"]},{\"id\":\"claude-opus-5.5\",\"object\":\"model\",\"created\":1790238570,\"owned_by\":\"CodeCraft API\",\"name\":\"Claude Opus 5.5\",\"description\":\"Anthropic's most capable model. Exceptional reasoning and agentic performance.\",\"context_length\":1000000,\"architecture\":{\"modality\":\"text+image->text\",\"input_modalities\":[\"text\",\"image\"],\"output_modalities\":[\"text\"],\"tokenizer\":\"Other\",\"instruct_type\":null},\"pricing\":{\"prompt\":\"0.000008303\",\"completion\":\"0.000008303\",\"request\":\"0\",\"image\":\"0\",\"input_per_1k\":0.008303,\"output_per_1k\":0.008303},\"top_provider\":{\"context_length\":1000000,\"max_completion_tokens\":null,\"is_moderated\":false},\"supported_parameters\":[\"frequency_penalty\",\"include_reasoning\",\"max_tokens\",\"presence_penalty\",\"reasoning\",\"response_format\",\"seed\",\"stop\",\"temperature\",\"tool_choice\",\"tools\",\"top_p\"],\"type\":\"chat\",\"context_window\":1000000,\"capabilities\":[\"reasoning\",\"vision\",\"tools\",\"streaming\",\"json_mode\"]}]}",
+  "parsed": {
+    "object": "list",
+    "data": [
+      {
+        "id": "muse-spark-1.1",
+        "object": "model",
+        "created": 1787211373,
+        "owned_by": "CodeCraft API",
+        "name": "Muse Spark 1.1",
+        "description": "Meta Muse Spark series. Fast and capable with strong reasoning scores.",
+        "context_length": 1000000,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.000001817",
+          "completion": "0.000001817",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.001817,
+          "output_per_1k": 0.001817
+        },
+        "top_provider": {
+          "context_length": 1000000,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1000000,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode"
+        ]
+      },
+      {
+        "id": "gemma-2-2b",
+        "object": "model",
+        "created": 1787219328,
+        "owned_by": "CodeCraft API",
+        "name": "Gemma 2 2B",
+        "description": "Lightweight open model by Google. Fast and efficient for everyday tasks.",
+        "context_length": 8192,
+        "architecture": {
+          "modality": "text->text",
+          "input_modalities": [
+            "text"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.000000115",
+          "completion": "0.00000023",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.000115,
+          "output_per_1k": 0.00023
+        },
+        "top_provider": {
+          "context_length": 8192,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "max_tokens",
+          "presence_penalty",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 8192,
+        "capabilities": [
+          "streaming",
+          "json_mode"
+        ]
+      },
+      {
+        "id": "gpt-5.6-sol",
+        "object": "model",
+        "created": 1787221834,
+        "owned_by": "CodeCraft API",
+        "name": "GPT-5.6 Sol",
+        "description": "OpenAI flagship model. Top-tier reasoning, coding, and agentic capability.",
+        "context_length": 1050000,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.000008947",
+          "completion": "0.000008947",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.008947,
+          "output_per_1k": 0.008947
+        },
+        "top_provider": {
+          "context_length": 1050000,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1050000,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode"
+        ]
+      },
+      {
+        "id": "claude-opus-5",
+        "object": "model",
+        "created": 1787221858,
+        "owned_by": "CodeCraft API",
+        "name": "Claude Opus 5",
+        "description": "Anthropic's most capable model. Exceptional reasoning and agentic performance.",
+        "context_length": 1000000,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.000008303",
+          "completion": "0.000008303",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.008303,
+          "output_per_1k": 0.008303
+        },
+        "top_provider": {
+          "context_length": 1000000,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1000000,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode"
+        ]
+      },
+      {
+        "id": "claude-fable-5",
+        "object": "model",
+        "created": 1787221888,
+        "owned_by": "CodeCraft API",
+        "name": "Claude Fable 5",
+        "description": "Anthropic premium model. Outstanding coding and reasoning with top Code Arena score.",
+        "context_length": 1000000,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.000016606",
+          "completion": "0.000016606",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.016606,
+          "output_per_1k": 0.016606
+        },
+        "top_provider": {
+          "context_length": 1000000,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1000000,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode"
+        ]
+      },
+      {
+        "id": "claude-mythos-preview",
+        "object": "model",
+        "created": 1787221915,
+        "owned_by": "CodeCraft API",
+        "name": "Claude Mythos Preview",
+        "description": "Anthropic next-gen preview model. Cutting-edge reasoning, not yet generally released.",
+        "context_length": 1000000,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.000008303",
+          "completion": "0.000008303",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.008303,
+          "output_per_1k": 0.008303
+        },
+        "top_provider": {
+          "context_length": 1000000,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1000000,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode"
+        ]
+      },
+      {
+        "id": "kimi-k3",
+        "object": "model",
+        "created": 1787221925,
+        "owned_by": "CodeCraft API",
+        "name": "Kimi K3",
+        "description": "Moonshot AI open-source flagship. Strong reasoning and coding, 2.8T params.",
+        "context_length": 1000000,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.0000049795",
+          "completion": "0.0000049795",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.0049795,
+          "output_per_1k": 0.0049795
+        },
+        "top_provider": {
+          "context_length": 1000000,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1000000,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode",
+          "web_search"
+        ]
+      },
+      {
+        "id": "glm-5.3",
+        "object": "model",
+        "created": 1787221936,
+        "owned_by": "CodeCraft API",
+        "name": "GLM-5.3",
+        "description": "Zhipu AI latest model. Strong reasoning and agentic capability, 753B params.",
+        "context_length": 1000000,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.000001357",
+          "completion": "0.000001357",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.001357,
+          "output_per_1k": 0.001357
+        },
+        "top_provider": {
+          "context_length": 1000000,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1000000,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode",
+          "web_search"
+        ]
+      },
+      {
+        "id": "deepseek-v4-pro-0813",
+        "object": "model",
+        "created": 1787221948,
+        "owned_by": "CodeCraft API",
+        "name": "DeepSeek-V4-Pro-0813",
+        "description": "DeepSeek open-source pro model. Excellent reasoning and coding, 1.6T params.",
+        "context_length": 1048576,
+        "architecture": {
+          "modality": "text->text",
+          "input_modalities": [
+            "text"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.000000552",
+          "completion": "0.000000552",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.000552,
+          "output_per_1k": 0.000552
+        },
+        "top_provider": {
+          "context_length": 1048576,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1048576,
+        "capabilities": [
+          "reasoning",
+          "tools",
+          "streaming",
+          "json_mode"
+        ]
+      },
+      {
+        "id": "qwen3.8-max",
+        "object": "model",
+        "created": 1787221958,
+        "owned_by": "CodeCraft API",
+        "name": "Qwen3.8 Max",
+        "description": "Alibaba Qwen flagship open model. Strong all-round capability, 2.4T params.",
+        "context_length": 1000000,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.0000017595",
+          "completion": "0.0000017595",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.0017595,
+          "output_per_1k": 0.0017595
+        },
+        "top_provider": {
+          "context_length": 1000000,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1000000,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode",
+          "web_search"
+        ]
+      },
+      {
+        "id": "gpt-5.6-terra",
+        "object": "model",
+        "created": 1787221981,
+        "owned_by": "CodeCraft API",
+        "name": "GPT-5.6 Terra",
+        "description": "OpenAI high-end model. Strong reasoning and coding at a mid price point.",
+        "context_length": 1050000,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.0000035765",
+          "completion": "0.0000035765",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.0035765,
+          "output_per_1k": 0.0035765
+        },
+        "top_provider": {
+          "context_length": 1050000,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1050000,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode"
+        ]
+      },
+      {
+        "id": "claude-opus-4.8",
+        "object": "model",
+        "created": 1787221991,
+        "owned_by": "CodeCraft API",
+        "name": "Claude Opus 4.8",
+        "description": "Anthropic Opus-class model. Reliable reasoning and coding performance.",
+        "context_length": 1000000,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.000008303",
+          "completion": "0.000008303",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.008303,
+          "output_per_1k": 0.008303
+        },
+        "top_provider": {
+          "context_length": 1000000,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1000000,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode"
+        ]
+      },
+      {
+        "id": "gemini-3.7-flash",
+        "object": "model",
+        "created": 1787222013,
+        "owned_by": "CodeCraft API",
+        "name": "Gemini 3.7 Flash",
+        "description": "Google latest Flash model. Very fast with strong reasoning, 479c/s.",
+        "context_length": 1048576,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.000001242",
+          "completion": "0.000001242",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.001242,
+          "output_per_1k": 0.001242
+        },
+        "top_provider": {
+          "context_length": 1048576,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1048576,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode",
+          "web_search"
+        ]
+      },
+      {
+        "id": "claude-sonnet-5",
+        "object": "model",
+        "created": 1787222023,
+        "owned_by": "CodeCraft API",
+        "name": "Claude Sonnet 5",
+        "description": "Anthropic balanced model. Great coding and reasoning at a lower cost.",
+        "context_length": 1000000,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.0000033235",
+          "completion": "0.0000033235",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.0033235,
+          "output_per_1k": 0.0033235
+        },
+        "top_provider": {
+          "context_length": 1000000,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1000000,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode"
+        ]
+      },
+      {
+        "id": "gpt-5.5",
+        "object": "model",
+        "created": 1787222034,
+        "owned_by": "CodeCraft API",
+        "name": "GPT-5.5",
+        "description": "OpenAI capable model. Solid reasoning and coding performance.",
+        "context_length": 1050000,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.000008947",
+          "completion": "0.000008947",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.008947,
+          "output_per_1k": 0.008947
+        },
+        "top_provider": {
+          "context_length": 1050000,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1050000,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode"
+        ]
+      },
+      {
+        "id": "grok-4.5",
+        "object": "model",
+        "created": 1787222045,
+        "owned_by": "CodeCraft API",
+        "name": "Grok 4.5",
+        "description": "xAI model. Strong reasoning and agentic capability.",
+        "context_length": 500000,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.000002806",
+          "completion": "0.000002806",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.002806,
+          "output_per_1k": 0.002806
+        },
+        "top_provider": {
+          "context_length": 500000,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 500000,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode",
+          "web_search"
+        ]
+      },
+      {
+        "id": "deepseek-v4-flash-0731",
+        "object": "model",
+        "created": 1787222059,
+        "owned_by": "CodeCraft API",
+        "name": "DeepSeek-V4-Flash-0731",
+        "description": "DeepSeek fast open model. Very affordable with solid reasoning, 304B params.",
+        "context_length": 1048576,
+        "architecture": {
+          "modality": "text->text",
+          "input_modalities": [
+            "text"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.000000115",
+          "completion": "0.000000115",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.000115,
+          "output_per_1k": 0.000115
+        },
+        "top_provider": {
+          "context_length": 1048576,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1048576,
+        "capabilities": [
+          "reasoning",
+          "tools",
+          "streaming",
+          "json_mode"
+        ]
+      },
+      {
+        "id": "grok-4.6",
+        "object": "model",
+        "created": 1787222071,
+        "owned_by": "CodeCraft API",
+        "name": "Grok 4.6",
+        "description": "xAI latest model. Improved reasoning and coding over 4.5.",
+        "context_length": 500000,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.000002806",
+          "completion": "0.000002806",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.002806,
+          "output_per_1k": 0.002806
+        },
+        "top_provider": {
+          "context_length": 500000,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 500000,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode",
+          "web_search"
+        ]
+      },
+      {
+        "id": "seed-2.1-pro",
+        "object": "model",
+        "created": 1787222081,
+        "owned_by": "CodeCraft API",
+        "name": "Seed 2.1 Pro",
+        "description": "ByteDance Seed series pro model. Strong reasoning and coding.",
+        "context_length": 262144,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.00000115",
+          "completion": "0.00000115",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.00115,
+          "output_per_1k": 0.00115
+        },
+        "top_provider": {
+          "context_length": 262144,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 262144,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode"
+        ]
+      },
+      {
+        "id": "glm-5.2",
+        "object": "model",
+        "created": 1787222105,
+        "owned_by": "CodeCraft API",
+        "name": "GLM-5.2",
+        "description": "Zhipu AI open model. Good reasoning and coding, 753B params.",
+        "context_length": 1000000,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.000001357",
+          "completion": "0.000001357",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.001357,
+          "output_per_1k": 0.001357
+        },
+        "top_provider": {
+          "context_length": 1000000,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1000000,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode",
+          "web_search"
+        ]
+      },
+      {
+        "id": "qwen3.8-27b",
+        "object": "model",
+        "created": 1787222117,
+        "owned_by": "CodeCraft API",
+        "name": "Qwen3.8-27B",
+        "description": "Alibaba Qwen compact open model. Efficient 27.8B params with solid capability.",
+        "context_length": 262144,
+        "architecture": {
+          "modality": "text->text",
+          "input_modalities": [
+            "text"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.000000575",
+          "completion": "0.000000575",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.000575,
+          "output_per_1k": 0.000575
+        },
+        "top_provider": {
+          "context_length": 262144,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 262144,
+        "capabilities": [
+          "reasoning",
+          "tools",
+          "streaming",
+          "json_mode"
+        ]
+      },
+      {
+        "id": "gpt-5.6-luna",
+        "object": "model",
+        "created": 1787222128,
+        "owned_by": "CodeCraft API",
+        "name": "GPT-5.6 Luna",
+        "description": "OpenAI efficient model. Great value with strong reasoning, 290c/s speed.",
+        "context_length": 1050000,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.0000003565",
+          "completion": "0.0000003565",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.0003565,
+          "output_per_1k": 0.0003565
+        },
+        "top_provider": {
+          "context_length": 1050000,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1050000,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode"
+        ]
+      },
+      {
+        "id": "qwen3.7-max",
+        "object": "model",
+        "created": 1787222146,
+        "owned_by": "CodeCraft API",
+        "name": "Qwen3.7 Max",
+        "description": "Alibaba Qwen pro model. Strong reasoning and coding performance.",
+        "context_length": 1000000,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.0000017595",
+          "completion": "0.0000017595",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.0017595,
+          "output_per_1k": 0.0017595
+        },
+        "top_provider": {
+          "context_length": 1000000,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1000000,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode",
+          "web_search"
+        ]
+      },
+      {
+        "id": "claude-opus-4.6",
+        "object": "model",
+        "created": 1787222165,
+        "owned_by": "CodeCraft API",
+        "name": "Claude Opus 4.6",
+        "description": "Anthropic Opus-class model. Reliable reasoning and agentic performance.",
+        "context_length": 1000000,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.000008303",
+          "completion": "0.000008303",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.008303,
+          "output_per_1k": 0.008303
+        },
+        "top_provider": {
+          "context_length": 1000000,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1000000,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode"
+        ]
+      },
+      {
+        "id": "gpt-5.5-pro",
+        "object": "model",
+        "created": 1787222177,
+        "owned_by": "CodeCraft API",
+        "name": "GPT-5.5 Pro",
+        "description": "OpenAI pro-tier model. Enhanced reasoning and coding over base 5.5.",
+        "context_length": 1050000,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.000008947",
+          "completion": "0.000008947",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.008947,
+          "output_per_1k": 0.008947
+        },
+        "top_provider": {
+          "context_length": 1050000,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1050000,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode"
+        ]
+      },
+      {
+        "id": "claude-opus-4.7",
+        "object": "model",
+        "created": 1787222188,
+        "owned_by": "CodeCraft API",
+        "name": "Claude Opus 4.7",
+        "description": "Anthropic Opus-class model. Strong coding and reasoning, high Code Arena score.",
+        "context_length": 1000000,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.000008303",
+          "completion": "0.000008303",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.008303,
+          "output_per_1k": 0.008303
+        },
+        "top_provider": {
+          "context_length": 1000000,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1000000,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode"
+        ]
+      },
+      {
+        "id": "gemini-3.6-flash",
+        "object": "model",
+        "created": 1787222199,
+        "owned_by": "CodeCraft API",
+        "name": "Gemini 3.6 Flash",
+        "description": "Google fast model. Very quick responses with good reasoning, 364c/s.",
+        "context_length": 1048576,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.0000024955",
+          "completion": "0.0000024955",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.0024955,
+          "output_per_1k": 0.0024955
+        },
+        "top_provider": {
+          "context_length": 1048576,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1048576,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode",
+          "web_search"
+        ]
+      },
+      {
+        "id": "kimi-k2.6",
+        "object": "model",
+        "created": 1787222211,
+        "owned_by": "CodeCraft API",
+        "name": "Kimi K2.6",
+        "description": "Moonshot AI open model. Strong reasoning and coding, 1.0T params.",
+        "context_length": 1000000,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.000001219",
+          "completion": "0.000001219",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.001219,
+          "output_per_1k": 0.001219
+        },
+        "top_provider": {
+          "context_length": 1000000,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1000000,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode",
+          "web_search"
+        ]
+      },
+      {
+        "id": "seed-2.1-turbo",
+        "object": "model",
+        "created": 1787222223,
+        "owned_by": "CodeCraft API",
+        "name": "Seed 2.1 Turbo",
+        "description": "ByteDance Seed turbo model. Fast with solid reasoning and coding.",
+        "context_length": 262144,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.00000092",
+          "completion": "0.00000092",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.00092,
+          "output_per_1k": 0.00092
+        },
+        "top_provider": {
+          "context_length": 262144,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 262144,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode"
+        ]
+      },
+      {
+        "id": "gemini-3.1-pro",
+        "object": "model",
+        "created": 1787222234,
+        "owned_by": "CodeCraft API",
+        "name": "Gemini 3.1 Pro",
+        "description": "Google pro model. Strong reasoning and coding with high Code Arena score.",
+        "context_length": 1048576,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.0000044735",
+          "completion": "0.0000044735",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.0044735,
+          "output_per_1k": 0.0044735
+        },
+        "top_provider": {
+          "context_length": 1048576,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1048576,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode",
+          "web_search"
+        ]
+      },
+      {
+        "id": "deepseek-v4-pro-max",
+        "object": "model",
+        "created": 1787222247,
+        "owned_by": "CodeCraft API",
+        "name": "DeepSeek-V4-Pro-Max",
+        "description": "DeepSeek top open model. Maximum capability with 1.6T params.",
+        "context_length": 1048576,
+        "architecture": {
+          "modality": "text->text",
+          "input_modalities": [
+            "text"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.000002047",
+          "completion": "0.000002047",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.002047,
+          "output_per_1k": 0.002047
+        },
+        "top_provider": {
+          "context_length": 1048576,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1048576,
+        "capabilities": [
+          "reasoning",
+          "tools",
+          "streaming",
+          "json_mode"
+        ]
+      },
+      {
+        "id": "claude-fable-5.1",
+        "object": "model",
+        "created": 1790238570,
+        "owned_by": "CodeCraft API",
+        "name": "Claude Fable 5.1",
+        "description": "Anthropic premium model. Outstanding coding and reasoning with top Code Arena score.",
+        "context_length": 1000000,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.000016606",
+          "completion": "0.000016606",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.016606,
+          "output_per_1k": 0.016606
+        },
+        "top_provider": {
+          "context_length": 1000000,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1000000,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode"
+        ]
+      },
+      {
+        "id": "claude-opus-5.5",
+        "object": "model",
+        "created": 1790238570,
+        "owned_by": "CodeCraft API",
+        "name": "Claude Opus 5.5",
+        "description": "Anthropic's most capable model. Exceptional reasoning and agentic performance.",
+        "context_length": 1000000,
+        "architecture": {
+          "modality": "text+image->text",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.000008303",
+          "completion": "0.000008303",
+          "request": "0",
+          "image": "0",
+          "input_per_1k": 0.008303,
+          "output_per_1k": 0.008303
+        },
+        "top_provider": {
+          "context_length": 1000000,
+          "max_completion_tokens": null,
+          "is_moderated": false
+        },
+        "supported_parameters": [
+          "frequency_penalty",
+          "include_reasoning",
+          "max_tokens",
+          "presence_penalty",
+          "reasoning",
+          "response_format",
+          "seed",
+          "stop",
+          "temperature",
+          "tool_choice",
+          "tools",
+          "top_p"
+        ],
+        "type": "chat",
+        "context_window": 1000000,
+        "capabilities": [
+          "reasoning",
+          "vision",
+          "tools",
+          "streaming",
+          "json_mode"
+        ]
+      }
+    ]
+  },
+  "stream_lines": null,
+  "ttft_ms": null,
+  "attempt": 1,
+  "policy_denied": false
+}
